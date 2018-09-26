@@ -1,0 +1,40 @@
+page-state {
+       
+        body, ion-item, ion-title, button {
+        font-family: 'kufi' !important;
+        }
+
+        .dedails-btn{
+
+            float: left;
+            font-size: 3vw !important;
+            border-radius: 30px !important;
+            padding: 2vw;
+            margin-top: 1%;
+            background-color: #1095f4 ;//#ff9f00;
+            color: #fff;
+            
+        }
+
+
+        .ionItem{
+          
+            text-align: right;
+            font-size: 5vw;
+            border-bottom: 1px solid #1095f4
+        }
+
+
+        ion-list{ 
+
+            border-bottom: #488aff;
+            padding: 0;
+            margin: 0 !important;
+
+        }
+
+        ion-title{
+            text-align: center
+        }
+
+}

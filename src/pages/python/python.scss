@@ -1,0 +1,33 @@
+page-python {
+
+    body, ion-item, ion-title, ul {
+        font-family: 'kufi' !important;
+        }
+
+    ul{
+        padding-right: 15px;
+        text-align: justify;
+        margin: 10px 0px 15px 0;
+    }
+
+.menus{
+    display: inline-block !important;
+    position: absolute;
+    left: 0 ;
+     color: #fff
+}
+p{
+    color: #107895
+}
+
+.main-ul > li  {
+    list-style-image: url('../../assets/imgs/listIcon/Untitled-2.png')
+}
+
+
+.main-ul li ul li  {
+    list-style-image: url('../../assets/imgs/listIcon/Untitled-1.png');
+    margin: 7px 0px 10px 0px;
+}
+
+}
