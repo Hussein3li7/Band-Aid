@@ -50,8 +50,7 @@ export class AboutPage {
       this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
       this.hideTeam[0].style.display='block' 
  
-   
-
+  
 
   }
 
