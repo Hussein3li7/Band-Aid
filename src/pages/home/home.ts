@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { StatePage } from '../state/state'
-import { ObjectivesPage } from '../objectives/objectives'
-import { PrinciplesPage } from '../principles/principles'
-import { AboutPage } from '../about/about';
 import { CallNumber } from '@ionic-native/call-number';
 @Component({
   selector: 'page-home',

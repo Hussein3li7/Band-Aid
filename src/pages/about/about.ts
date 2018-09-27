@@ -26,7 +26,12 @@ export class AboutPage {
     console.log('ionViewDidLoad AboutPage');
    
 
-     this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+
+    
+
+
+
+     this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
     this.hideAbout[0].style.display='none';
 
       this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
@@ -39,7 +44,7 @@ export class AboutPage {
   team(){
    
     
-      this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+      this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
       this.hideAbout[0].style.display='none'
  
       this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
@@ -55,7 +60,7 @@ about(){
     this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
   this.hideTeam[0].style.display='none' 
 
-    this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+    this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
   this.hideAbout[0].style.display='block' 
 
 
