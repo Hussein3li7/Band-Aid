@@ -55,68 +55,70 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  ok(){
+//   ok(){
 
-    if(this.night){
+//     if(this.night){
  
-      let y = document.getElementsByTagName('ion-content') as HTMLCollectionOf<HTMLElement>;
-      y[0].style.backgroundColor="#222"
+//       let y = document.getElementsByTagName('ion-content'  ) as HTMLCollectionOf<HTMLElement>;
+//       y[0].style.backgroundColor="#222"
+      
 
-      let shand = document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>;
-      shand[0].style.backgroundColor="#222"
+//       let shand = document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>;
+//       shand[0].style.backgroundColor="#222"
 
-    // let shand2 = document.getElementsByClassName('backIon') as HTMLCollectionOf<HTMLElement>;
-    // shand2[0].style.backgroundColor="#222"
+//     // let shand2 = document.getElementsByClassName('backIon') as HTMLCollectionOf<HTMLElement>;
+//     // shand2[0].style.backgroundColor="#222"
 
-    let shand3 = document.getElementsByClassName('night') as HTMLCollectionOf<HTMLElement>;
+//     let shand3 = document.getElementsByClassName('night') as HTMLCollectionOf<HTMLElement>;
 
  
-            shand3[0].style.color="#f5f5f5"
-        shand3[0].style.backgroundColor="#222"
+//             shand3[0].style.color="#f5f5f5"
+//         shand3[0].style.backgroundColor="#222"
     
 
-    for(let x=0 ;x<this.pages.length;x++){
+//     for(let x=0 ;x<this.pages.length;x++){
 
-     let title = document.getElementsByClassName('btn') as HTMLCollectionOf<HTMLElement>;
-      title[x].style.color="#ececec"
+//      let title = document.getElementsByClassName('btn') as HTMLCollectionOf<HTMLElement>;
+//       title[x].style.color="#ececec"
 
-}
+// }
 
 
-    }
-    else{
 
-        let shand = document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>;
-        shand[0].style.backgroundColor="#2196F3"
+//     }
+//     else{
+
+//         let shand = document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>;
+//         shand[0].style.backgroundColor="#2196F3"
     
-        let shand2 = document.getElementsByClassName('backIon') as HTMLCollectionOf<HTMLElement>;
-        shand2[0].style.backgroundColor="#f8f8f8"
+//         let shand2 = document.getElementsByClassName('backIon') as HTMLCollectionOf<HTMLElement>;
+//         shand2[0].style.backgroundColor="#f8f8f8"
 
-        let shand3 = document.getElementsByClassName('night') as HTMLCollectionOf<HTMLElement>;
-        shand3[0].style.color="#2b8cd6"
-        shand3[0].style.backgroundColor="#f5f5f5"
+//         let shand3 = document.getElementsByClassName('night') as HTMLCollectionOf<HTMLElement>;
+//         shand3[0].style.color="#2b8cd6"
+//         shand3[0].style.backgroundColor="#f5f5f5"
  
 
     
     
     
-    for(let x=0 ;x<this.pages.length;x++){
+//     for(let x=0 ;x<this.pages.length;x++){
     
-         let title = document.getElementsByClassName('btn') as HTMLCollectionOf<HTMLElement>;
-          title[x].style.color="#5da4d5"
+//          let title = document.getElementsByClassName('btn') as HTMLCollectionOf<HTMLElement>;
+//           title[x].style.color="#5da4d5"
 
     
-    }
+//     }
 
 
 
-    }
+//     }
 
-  
+    
 
 
 
-}
+// }
 
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, style } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import{StatePage} from '../state/state'
 
@@ -16,8 +16,8 @@ import{StatePage} from '../state/state'
 })
 export class AboutPage {
 
- 
-  
+   hideAbout:any;
+   hideTeam:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
@@ -26,8 +26,39 @@ export class AboutPage {
     console.log('ionViewDidLoad AboutPage');
    
 
+     this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+    this.hideAbout[0].style.display='none';
+
+      this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
+    this.hideTeam[0].style.display='none';
+
   }
 
 
+
+  team(){
+   
+    
+      this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+      this.hideAbout[0].style.display='none'
+ 
+      this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
+      this.hideTeam[0].style.display='block' 
+ 
+   
+
+
+  }
+
+about(){
+
+    this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
+  this.hideTeam[0].style.display='none' 
+
+    this.hideAbout=document.getElementsByClassName('con-about-mob') as  HTMLCollectionOf<HTMLElement>
+  this.hideAbout[0].style.display='block' 
+
+
+}
 
 }

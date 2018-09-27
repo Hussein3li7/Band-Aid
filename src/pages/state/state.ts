@@ -56,7 +56,7 @@ export class StatePage {
       'الحروق',
       'الاختناق',
       'اظطرابات الدورة الدموية',
-      'فقدان الوعي',
+      'التسمم',
       'اصابات الظهر',
       'اصابات العضلات والمفاصل',
       'تاثير درجات الحرارة القصوى',
@@ -124,7 +124,7 @@ export class StatePage {
         else if (i == 'اظطرابات الدورة الدموية') {
           this.navCtrl.push(BloodCirculationPage)
         }
-        else if (i == 'فقدان الوعي') {
+        else if (i == 'التسمم') {
           this.navCtrl.push(UnconsciousnessPage)
         }
         else if (i == 'اصابات الظهر') {
