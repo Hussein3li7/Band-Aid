@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser'
 
 /**
  * Generated class for the ObjectivesPage page.
@@ -13,12 +14,26 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'objectives.html',
 })
 export class ObjectivesPage {
+  video={
+    url:'https://www.youtube.com/embed/Ws77icZwaSk',
+    title:'الاهداف'
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  safeResourceUrl:SafeResourceUrl
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public domSanitizer:DomSanitizer) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ObjectivesPage');
+
+        
+    this.safeResourceUrl=this.domSanitizer.bypassSecurityTrustResourceUrl(this.video.url);
+
+
   }
+
+  
 
 }

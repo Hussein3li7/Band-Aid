@@ -15,7 +15,7 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 })
 export class FaintingPage {
   video: any = {
-    url: 'https://www.youtube.com/embed/FZYLrlVsZoA',
+    url: 'https://www.youtube.com/embed/nD6fpWL_-Q4',
     title: 'الاغماء'
 };
 trustedVideoUrl:SafeResourceUrl
