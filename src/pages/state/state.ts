@@ -7,14 +7,14 @@ import { SunstrokePage } from '../sunstroke/sunstroke';
 import { ChokingPage } from '../choking/choking';
 import { BloodCirculationPage } from '../blood-circulation/blood-circulation';
 import { UnconsciousnessPage } from '../unconsciousness/unconsciousness';
-import { BackInjuriesPage } from '../back-injuries/back-injuries';
+
 import { MusculoskeletalInjuriesPage } from '../musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../max-temperatures/max-temperatures';
-import { AlienObjectsPage } from '../alien-objects/alien-objects';
+
 import { AchesPage } from '../aches/aches';
 import { MajorAccidentsPage } from '../major-accidents/major-accidents';
-import { BandagesPage } from '../bandages/bandages';
-import { TransportationPage } from '../transportation/transportation';
+
+
 import { EmergencyBirthPage } from '../emergency-birth/emergency-birth';
 import { WoundsPage } from '../wounds/wounds';
 import { PythonPage } from '../python/python';
@@ -57,14 +57,13 @@ export class StatePage {
       'الاختناق',
       'اظطرابات الدورة الدموية',
       'التسمم',
-      'اصابات الظهر',
+ 
       'اصابات العضلات والمفاصل',
       'تاثير درجات الحرارة القصوى',
-      'الاجسام الغريبة',
+ 
       'الاوجاع',
-      'التصرف في الحوادث الكبرى',
-      'الضمادات والعصائب',
-      'التدبير والنقل',
+ 
+ 
       'الولادة الطارئة',
       'لدغة الافعى'
     ];
@@ -127,30 +126,22 @@ export class StatePage {
         else if (i == 'التسمم') {
           this.navCtrl.push(UnconsciousnessPage)
         }
-        else if (i == 'اصابات الظهر') {
-          this.navCtrl.push(BackInjuriesPage)
-        }
+
         else if (i == 'اصابات العضلات والمفاصل') {
           this.navCtrl.push(MusculoskeletalInjuriesPage)
         }
         else if (i == 'تاثير درجات الحرارة القصوى') {
           this.navCtrl.push(MaxTemperaturesPage)
         }
-        else if (i == 'الاجسام الغريبة') {
-          this.navCtrl.push(AlienObjectsPage)
-        }
+
         else if (i == 'الاوجاع') {
           this.navCtrl.push(AchesPage)
         }
         else if (i == 'التصرف في الحوادث الكبرى') {
           this.navCtrl.push(MajorAccidentsPage)
         }
-        else if (i == 'الضمادات والعصائب') {
-          this.navCtrl.push(BandagesPage)
-        }
-        else if (i == 'التدبير والنقل') {
-          this.navCtrl.push(TransportationPage)
-        }
+
+
         else if (i == 'الولادة الطارئة') {
           this.navCtrl.push(EmergencyBirthPage)
         }

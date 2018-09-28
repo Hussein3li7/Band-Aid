@@ -17,14 +17,13 @@ import { SunstrokePage } from '../pages/sunstroke/sunstroke'
 import { ChokingPage } from '../pages/choking/choking'
 import { BloodCirculationPage } from '../pages/blood-circulation/blood-circulation'
 import { UnconsciousnessPage } from '../pages/unconsciousness/unconsciousness';
-import { BackInjuriesPage } from '../pages/back-injuries/back-injuries';
+ 
 import { MusculoskeletalInjuriesPage } from '../pages/musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../pages/max-temperatures/max-temperatures';
-import { AlienObjectsPage } from '../pages/alien-objects/alien-objects';
+ 
 import { AchesPage } from '../pages/aches/aches';
 import { MajorAccidentsPage } from '../pages/major-accidents/major-accidents';
-import { BandagesPage } from '../pages/bandages/bandages';
-import { TransportationPage } from '../pages/transportation/transportation';
+ 
 import {PythonPage} from '../pages/python/python'
 
 
@@ -55,14 +54,13 @@ import { WoundsPage } from '../pages/wounds/wounds';
     ChokingPage,
     BloodCirculationPage,
     UnconsciousnessPage,
-    BackInjuriesPage,
+ 
     MusculoskeletalInjuriesPage,
     MaxTemperaturesPage,
-    AlienObjectsPage,
+ 
     AchesPage,
     MajorAccidentsPage,
-    BandagesPage,
-    TransportationPage,
+ 
     EmergencyBirthPage,
     WoundsPage,
     PythonPage,
@@ -90,12 +88,10 @@ import { WoundsPage } from '../pages/wounds/wounds';
     EmergencyBirthPage,
     UnconsciousnessPage,
     MusculoskeletalInjuriesPage,
-    BackInjuriesPage,
-    AlienObjectsPage,
+ 
     AchesPage,
     MajorAccidentsPage,
-    BandagesPage,
-    TransportationPage,
+ 
     WoundsPage,
     PythonPage
   ],

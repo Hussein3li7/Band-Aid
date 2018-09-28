@@ -40,17 +40,31 @@ export class AboutPage {
   }
 
 
-
   team(){
    
+
+//     team  
+//  about
+
+
+ let borAbout=document.getElementsByClassName('about') as HTMLCollectionOf<HTMLElement>
+ borAbout[0].style.borderBottomLeftRadius="100px"
+
+    let hidedate=document.getElementsByClassName('conn-btn-details') as HTMLCollectionOf<HTMLElement>
+    hidedate[0].style.backgroundColor="#2699fb"
+    
     
       this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
       this.hideAbout[0].style.display='none'
  
       this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
       this.hideTeam[0].style.display='block' 
- 
-  
+      
+      let x =document.getElementsByClassName('conn-info') as  HTMLCollectionOf<HTMLElement>
+
+  for(let z=0;z<4;z++){
+      x[z].style.backgroundColor='#2699fb';
+  }
 
   }
 
@@ -60,7 +74,14 @@ about(){
   this.hideTeam[0].style.display='none' 
 
     this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
-  this.hideAbout[0].style.display='block' 
+    this.hideAbout[0].style.display='block' 
+    this.hideAbout[0].style.backgroundColor="#6A3CB8"
+
+    let borAbout=document.getElementsByClassName('team') as HTMLCollectionOf<HTMLElement>
+    borAbout[0].style.borderBottomRightRadius="100px"
+
+  let hide_date=document.getElementsByClassName('conn-btn-details') as HTMLCollectionOf<HTMLElement>
+    hide_date[0].style.backgroundColor="#6A3CB8"
 
 
 }
