@@ -7,19 +7,17 @@ import { SunstrokePage } from '../sunstroke/sunstroke';
 import { ChokingPage } from '../choking/choking';
 import { BloodCirculationPage } from '../blood-circulation/blood-circulation';
 import { UnconsciousnessPage } from '../unconsciousness/unconsciousness';
-
 import { MusculoskeletalInjuriesPage } from '../musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../max-temperatures/max-temperatures';
-
 import { AchesPage } from '../aches/aches';
 import { MajorAccidentsPage } from '../major-accidents/major-accidents';
-
-
 import { EmergencyBirthPage } from '../emergency-birth/emergency-birth';
 import { WoundsPage } from '../wounds/wounds';
 import { PythonPage } from '../python/python';
-
-
+import * as firebase from 'firebase/app'
+import {AngularFireDatabase,AngularFireList, AngularFireObject} from '@angular/fire/database'
+import{AngularFireAuth}from '@angular/fire/auth'
+import {FeedBackPage}from '../../pages/feed-back/feed-back'
 
 /**
  * Generated class for the StatePage page.
@@ -39,10 +37,27 @@ export class StatePage {
   items: string[];
   items2: string[];
   val: any
+ 
+  test={
+    state:'',
+    info:'',
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  giftList: AngularFireObject<any>;
+  getList:AngularFireList<any>
+  itemArray=[];
+  myObject = []
+  list=this.db.list('addList')
+
+  logedin:boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public db:AngularFireDatabase,public auth:AngularFireAuth) {
 
     this.initializeItems();
+ 
+    this.giftList = db.object('addList');
+this.getList=db.list('addList')
 
   }
 
@@ -155,12 +170,64 @@ export class StatePage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StatePage');
+ 
+
+
+  addState(){
+
+    this.list.push(this.test)
+
+    this.giftList.snapshotChanges().subscribe(action => {
+      
+      if (action.payload.val() == null || action.payload.val() == undefined) {
+        console.log('no data' )
+      } else {
+
+        // this.getList.snapshotChanges().subscribe(action=>{
+        //   action.forEach(actios=>{
+        //     let y=actios.payload.toJSON();
+        //     y['key']=actios.key;
+        //     this.itemArray.push(y as info)
+        //   })
+        // })
+      this.itemArray.push(action.payload.val() as info )
+     this.myObject = Object.entries(this.itemArray[0])
+       this.getList.push[this.itemArray[0]]
+      
+//         this.myObject=Object.create(this.itemArray[0])
+//         console.log(this.myObject[0]['info'])
+//  console.log(this.myObject)
+
+        for(let x=0 ;x<this.myObject.length;x++){
+        console.log(this.myObject[x][1]['info'])
+        this.items.push(this.myObject[x][1]['info'])
+        }
+
+      }
+ 
+     })
 
   }
 
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad StatePage');
+    let user=firebase.auth().currentUser;
+ if(user){
+   this.logedin=true;
+ }
+ else{
+   this.logedin=false;
+ }
+
+ 
+
+  }
+
+}
 
 
+export class info{
+  state:string='';
+  info:string='';
 }

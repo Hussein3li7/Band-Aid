@@ -9,7 +9,8 @@ import { ObjectivesPage  } from '../pages/objectives/objectives';
 import { PrinciplesPage } from '../pages/principles/principles';
 import{StatePage} from '../pages/state/state'
 import{AboutPage} from '../pages/about/about'
- 
+import {FeedBackPage} from '../pages/feed-back/feed-back'
+
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +32,10 @@ export class MyApp {
       { title: 'الحالات', component: StatePage,icon:'medkit'  }, 
       { title: 'مبادئ الاسعافات الاولية', component: PrinciplesPage,icon:'pulse'  }, 
       { title: 'اهداف الاسعافات الاولية', component: ObjectivesPage,icon:'leaf'  },
-      { title: 'حول', component: AboutPage,icon:'alert'  }
+      { title: 'رأيك', component: FeedBackPage,icon:'podium'  } ,
+      { title: 'حول', component: AboutPage,icon:'alert'  },
+
+
     ];
 
 

@@ -33,8 +33,24 @@ import { COMPONENT_VARIABLE } from '@angular/platform-browser/src/dom/dom_render
 import { COMPILER_PROVIDERS } from '@angular/platform-browser-dynamic/src/compiler_factory';
 import { EmergencyBirthPage } from '../pages/emergency-birth/emergency-birth';
 import { WoundsPage } from '../pages/wounds/wounds';
+import {FeedBackPage} from '../pages/feed-back/feed-back'
 
+import{LoginPage} from '../pages/login/login'
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import{AngularFireAuthModule} from '@angular/fire/auth'
+
+import { ApiServiseProvider } from '../providers/api-servise/api-servise';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDelTjJUT2zeXapaz5mexNU_Rn91prbN20",
+  authDomain: "first-aid-3fbf2.firebaseapp.com",
+  databaseURL: "https://first-aid-3fbf2.firebaseio.com",
+  projectId: "first-aid-3fbf2",
+  storageBucket: "first-aid-3fbf2.appspot.com",
+  messagingSenderId: "838370832497"
+};
 
 
 
@@ -54,10 +70,10 @@ import { WoundsPage } from '../pages/wounds/wounds';
     ChokingPage,
     BloodCirculationPage,
     UnconsciousnessPage,
- 
+    FeedBackPage,
     MusculoskeletalInjuriesPage,
     MaxTemperaturesPage,
- 
+    LoginPage,
     AchesPage,
     MajorAccidentsPage,
  
@@ -68,6 +84,10 @@ import { WoundsPage } from '../pages/wounds/wounds';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -88,10 +108,10 @@ import { WoundsPage } from '../pages/wounds/wounds';
     EmergencyBirthPage,
     UnconsciousnessPage,
     MusculoskeletalInjuriesPage,
- 
+    FeedBackPage,
     AchesPage,
     MajorAccidentsPage,
- 
+    LoginPage,
     WoundsPage,
     PythonPage
   ],
@@ -99,7 +119,9 @@ import { WoundsPage } from '../pages/wounds/wounds';
     StatusBar,
     SplashScreen,
     CallNumber,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ApiServiseProvider,
+
   ]
 })
 export class AppModule { }
