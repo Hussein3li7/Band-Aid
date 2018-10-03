@@ -46,7 +46,6 @@ logedin:boolean;
 
     firebase.auth().onAuthStateChanged(userr=>{
       if(userr){
-        //this.navCtrl.push(FeedBackPage)
         this.logedin=true;
       }
       else{
@@ -54,6 +53,13 @@ logedin:boolean;
        this.logedin=false;
       }
   })
+
+  if(this.logedin=true){
+    return;
+  }
+  else{
+    this.navCtrl.push(LoginPage)
+  }
     
 
   }

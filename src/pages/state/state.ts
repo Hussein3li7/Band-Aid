@@ -16,9 +16,9 @@ import { WoundsPage } from '../wounds/wounds';
 import { PythonPage } from '../python/python';
 import * as firebase from 'firebase/app'
 import {AngularFireDatabase,AngularFireList, AngularFireObject} from '@angular/fire/database'
-import{AngularFireAuth}from '@angular/fire/auth'
-import {FeedBackPage}from '../../pages/feed-back/feed-back'
-
+import { AngularFireAuth } from '@angular/fire/auth'
+import { FeedBackPage } from '../../pages/feed-back/feed-back'
+//import { AngularFireDatabase, AngularFireList,  } from 'angularfire2/database'
 /**
  * Generated class for the StatePage page.
  *
@@ -37,27 +37,40 @@ export class StatePage {
   items: string[];
   items2: string[];
   val: any
- 
-  test={
-    state:'',
-    info:'',
+
+  test = {
+    state: '',
+    info: '',
 
   }
 
   giftList: AngularFireObject<any>;
-  getList:AngularFireList<any>
-  itemArray=[];
+  getList: AngularFireList<any>
+  itemArray = [];
   myObject = []
-  list=this.db.list('addList')
+  list = this.db.list('addList')
 
-  logedin:boolean;
+  logedin: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public db:AngularFireDatabase,public auth:AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public auth: AngularFireAuth) {
+
+    let user = firebase.auth().currentUser;
+    if (user) {
+      this.logedin = true;
+    }
+    else {
+      this.logedin = false;
+    }
 
     this.initializeItems();
- 
+
     this.giftList = db.object('addList');
-this.getList=db.list('addList')
+ 
+
+    for (let x = 0; x < this.myObject.length; x++) {
+      console.log(this.myObject[x][1]['info'])
+      this.items.push(this.myObject[x][1]['info'])
+    }
 
   }
 
@@ -72,18 +85,22 @@ this.getList=db.list('addList')
       'الاختناق',
       'اظطرابات الدورة الدموية',
       'التسمم',
- 
+
       'اصابات العضلات والمفاصل',
       'تاثير درجات الحرارة القصوى',
- 
+
       'الاوجاع',
- 
- 
+
+
       'الولادة الطارئة',
       'الافاعي والعقارب'
     ];
 
+  }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad StatePage');
+ 
   }
 
   getItems(ev: any) {
@@ -170,17 +187,17 @@ this.getList=db.list('addList')
 
   }
 
- 
 
 
-  addState(){
+
+  addState() {
 
     this.list.push(this.test)
 
     this.giftList.snapshotChanges().subscribe(action => {
-      
+
       if (action.payload.val() == null || action.payload.val() == undefined) {
-        console.log('no data' )
+        console.log('no data')
       } else {
 
         // this.getList.snapshotChanges().subscribe(action=>{
@@ -190,44 +207,29 @@ this.getList=db.list('addList')
         //     this.itemArray.push(y as info)
         //   })
         // })
-      this.itemArray.push(action.payload.val() as info )
-     this.myObject = Object.entries(this.itemArray[0])
-       this.getList.push[this.itemArray[0]]
-      
-//         this.myObject=Object.create(this.itemArray[0])
-//         console.log(this.myObject[0]['info'])
-//  console.log(this.myObject)
+        this.itemArray.push(action.payload.val() as info)
+        this.myObject = Object.entries(this.itemArray[0])
+        this.getList.push[this.itemArray[0]]
 
-        for(let x=0 ;x<this.myObject.length;x++){
-        console.log(this.myObject[x][1]['info'])
-        this.items.push(this.myObject[x][1]['info'])
-        }
 
+                this.myObject=Object.create(this.itemArray[0])
+                console.log(this.myObject[0]['info'])
+         console.log(this.myObject)
+
+ 
       }
- 
-     })
+
+    })
 
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StatePage');
-    let user=firebase.auth().currentUser;
- if(user){
-   this.logedin=true;
- }
- else{
-   this.logedin=false;
- }
 
- 
-
-  }
 
 }
 
 
-export class info{
-  state:string='';
-  info:string='';
+export class info {
+  state: string = '';
+  info: string = '';
 }
