@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>تسجيل دخول</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,54 +20,28 @@
 
         <img class="logo" src="../../assets/imgs/Listback/CodeLogo.jpg" alt="">
       
+ 
       
-        <label class="lable" for="emal">الايميل</label>
-        <input [(ngModel)]="info.Email" class="input" type="email"  id="emal">
+        <label class="lable" for="email">الايميل</label>
+        <input [(ngModel)]="loginInfo.Email" class="input" type="email"  id="email">
         <label class="lable" for="pass"> كلمة السر</label>
-        <input [(ngModel)]="info.Pass"  class="input" type="password" id="pass">
+        <input [(ngModel)]="loginInfo.Pass"  class="input" type="password" id="pass">
         
-      
-          <button class="login" (click)="login()" >دخول</button>
-      
+          <button class="login" (click)="login()" >تسجيل الدخول</button>
       
           <p>او الدخول بواسطة </p>
       
           <div class="con-img-log">
       
-          <img class="log-soctial" src="../../assets/imgs/google-plus.svg" alt="">
-          <img class="log-soctial" src="../../assets/imgs/facebook.svg" alt="">
+          <img (click)="loginWithGoogle()" class="log-soctial" src="../../assets/imgs/search.svg" alt="">
+          <img (click)="LoginWIthFacebook()"  class="log-soctial" src="../../assets/imgs/facebook.svg" alt="">
       </div>
       
       
-      <p>لا تمتلك حساب ?<span>اضغط هنا</span> </p>
+      <p>لا تمتلك حساب ?<span (click)="gotoRegister()">اضغط هنا</span> </p>
+ 
       </div>
-<!--       
-      <div class="register-form">
-      
-          <img class="logo" src="../../assets/imgs/Listback/CodeLogo.jpg" alt="">
-          <label class="lable" for="emal">الايميل</label>
-          <input class="input" type="email" name="" id="emal">
-          <label class="lable" for="pass"> كلمة السر</label>
-          <input class="input" type="password" name="" id="pass">
-          
-        
-            <button class="login" (click)="login()" >دخول</button>
-        
-        
-            <p>او الدخول بواسطة </p>
-        
-            <div class="con-img-log">
-        
-            <img class="log-soctial" src="../../assets/imgs/google-plus.svg" alt="">
-            <img class="log-soctial" src="../../assets/imgs/facebook.svg" alt="">
-        </div>
-        
-        
-      <p (click)="hideLoginForm()">hide</p>
-      
-      
-      
-      </div> -->
+
       
 
 </ion-content>

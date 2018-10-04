@@ -5,6 +5,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  import {HomePage} from '../../pages/home/home'
  import {AngularFireAuth} from '@angular/fire/auth'
   import * as firebase from  'firebase/app'
+  import { AlertController } from 'ionic-angular';
+
 
 /**
  * Generated class for the FeedBackPage page.
@@ -20,48 +22,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedBackPage {
 
-
-  public user:firebase.User
- 
-    Email:'';
-    Pass:'';
+  feedBack:'';
   
-logedin:boolean;
+logedin:boolean=true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
+feedbackList=this.db.list('FeedBack')
+  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
 
-    // this.auth.authState.subscribe(logedin=>{
-    //   console.log(logedin)
-    //   if(this.user){
-    //    // this.navCtrl.push(LoginPage)
-    //    console.log("logedin")
-    //   }
-    //   else{
-    //     //this.navCtrl.push(FeedBackPage)
-       
-    //   }
 
-    // })
- 
 
     firebase.auth().onAuthStateChanged(userr=>{
       if(userr){
         this.logedin=true;
       }
-      else{
-         this.navCtrl.push(LoginPage)
+      else{ 
        this.logedin=false;
+      this.navCtrl.push(LoginPage)
       }
   })
-
-  if(this.logedin=true){
-    return;
-  }
-  else{
-    this.navCtrl.push(LoginPage)
-  }
-    
-
+ 
   }
   
 
@@ -71,31 +50,57 @@ logedin:boolean;
 
 
 
-
-  hideLoginForm(){
-    let hide=document.getElementsByClassName('login-form')as HTMLCollectionOf<HTMLElement>
-    hide[0].style.display="none"
+  getFeedBack(){
+    this.feedbackList.push(this.feedBack).then(()=>{
+ this.showAlert();
+    })
+    
+    let emptyFiled=document.getElementsByClassName('feed') as HTMLCollectionOf<HTMLInputElement>
+    emptyFiled[0].value="";
   }
 
 
   logut(){
-    this.auth.auth.signOut().then(()=>{
-      this.navCtrl.setRoot(HomePage)
-    })
+    this.showConfirm()
+    // this.auth.auth.signOut().then(()=>{
+    //   this.navCtrl.setRoot(HomePage)
+    // })
   }
 
 
 
-}
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'تسجيل الخروج ؟',
+      buttons: [
+        {
+          text: 'لا',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'نعم',
+          handler: () => {
+            console.log('Agree clicked');
+            this.auth.auth.signOut().then(()=>{
+              this.navCtrl.setRoot(HomePage)
+            });
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
-// window.onload= ()=>{
-//   firebase.auth().onAuthStateChanged(userr=>{
-//     if(userr){
-//       this.navCtrl.push(FeedBackPage)
-//     }
-//     else{
-//       this.navCtrl.push(LoginPage)
-       
-//     }
-// })
-// }
+
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'شكرا لك',
+      subTitle: 'شكرا لك على ملاحظات ',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+}

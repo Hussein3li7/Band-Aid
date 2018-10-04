@@ -4,20 +4,53 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-  <ion-navbar color="orange">
+<!-- <ion-header>
+  <ion-navbar>
     <button ion-button menuToggle class="btn-menus">
       <ion-icon name="menu"></ion-icon>
+      <ion-icon right ios="ios-log-out" md="md-log-out"></ion-icon>
     </button>
     <ion-title>رأيك</ion-title>
+    
   </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+
+  <ion-navbar color="orange">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      ملاحظات
+    </ion-title>
+
+    <ion-buttons   end>
+      <button *ngIf="logedin" ion-button icon-only (click)="logut()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+
+  <div *ngIf="logedin ; else notLogin " >
+
+  <textarea name="feedBack" [(ngModel)]="feedBack" class="feed" placeholder="رأيك..." ></textarea>
 
 
+<button class="sendBtn" (click)="getFeedBack()"> ارسال <ion-icon name="send"></ion-icon>  </button>
 
+</div>
 
-  <button *ngIf="logedin" (click)="logut()">Logout</button>
+<ng-template #notLogin > 
+ 
+  <p>يرجى تسجيل الدخول</p>
+  
+</ng-template>
+
 
 </ion-content>

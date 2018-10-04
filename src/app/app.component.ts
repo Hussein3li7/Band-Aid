@@ -32,7 +32,7 @@ export class MyApp {
       { title: 'الحالات', component: StatePage,icon:'medkit'  }, 
       { title: 'مبادئ الاسعافات الاولية', component: PrinciplesPage,icon:'pulse'  }, 
       { title: 'اهداف الاسعافات الاولية', component: ObjectivesPage,icon:'leaf'  },
-      { title: 'رأيك', component: FeedBackPage,icon:'podium'  } ,
+      { title: 'ملاحظات', component: FeedBackPage,icon:'podium'  } ,
       { title: 'حول', component: AboutPage,icon:'alert'  },
 
 

@@ -37,40 +37,17 @@ export class StatePage {
   items: string[];
   items2: string[];
   val: any
-
-  test = {
-    state: '',
-    info: '',
-
-  }
-
-  giftList: AngularFireObject<any>;
-  getList: AngularFireList<any>
-  itemArray = [];
-  myObject = []
-  list = this.db.list('addList')
-
-  logedin: boolean;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public auth: AngularFireAuth) {
-
-    let user = firebase.auth().currentUser;
-    if (user) {
-      this.logedin = true;
-    }
-    else {
-      this.logedin = false;
-    }
+ 
 
     this.initializeItems();
 
-    this.giftList = db.object('addList');
+ 
  
 
-    for (let x = 0; x < this.myObject.length; x++) {
-      console.log(this.myObject[x][1]['info'])
-      this.items.push(this.myObject[x][1]['info'])
-    }
+ 
 
   }
 
@@ -190,46 +167,8 @@ export class StatePage {
 
 
 
-  addState() {
-
-    this.list.push(this.test)
-
-    this.giftList.snapshotChanges().subscribe(action => {
-
-      if (action.payload.val() == null || action.payload.val() == undefined) {
-        console.log('no data')
-      } else {
-
-        // this.getList.snapshotChanges().subscribe(action=>{
-        //   action.forEach(actios=>{
-        //     let y=actios.payload.toJSON();
-        //     y['key']=actios.key;
-        //     this.itemArray.push(y as info)
-        //   })
-        // })
-        this.itemArray.push(action.payload.val() as info)
-        this.myObject = Object.entries(this.itemArray[0])
-        this.getList.push[this.itemArray[0]]
-
-
-                this.myObject=Object.create(this.itemArray[0])
-                console.log(this.myObject[0]['info'])
-         console.log(this.myObject)
-
- 
-      }
-
-    })
-
-  }
-
 
 
 
 }
 
-
-export class info {
-  state: string = '';
-  info: string = '';
-}

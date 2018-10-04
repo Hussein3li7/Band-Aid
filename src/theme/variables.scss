@@ -24,7 +24,6 @@ $app-direction: rtl;
 
 
 
-
 // Named Color Variables
 // --------------------------------------------------1095f4
 // Named colors makes it easy to reuse colors on various components.
@@ -56,6 +55,12 @@ $colors: (
   $searchbar-md-input-search-icon-color :#2699fb;
   $searchbar-md-input-border-color      :#2699fb;
   $searchbar-md-input-box-shadow: inset 0px 0px 0px 2px #2699fb;
+  //Alert
+  $alert-md-border-radius:10px;
+   $alert-md-head-text-align:center;
+   $alert-md-button-group-justify-content:center;
+  // $alert-md-background-color:#2699fb;
+  // $alert-md-message-text-color:#fff;
 
 
   $toolbar-md-title-font-size :1.6rem;
@@ -67,17 +72,18 @@ $searchbar-ios-input-search-icon-color  :#1095f4;
 $searchbar-ios-input-placeholder-color  :#838383;
 $searchbar-ios-input-background-color   :#f4f4f4;
 $searchbar-ios-input-text-color         :#222222;
-//$searchbar-ios-border-color             :red;
+ 
 $searchbar-ios-input-clear-icon-color   :#1095f4;
 $searchbar-ios-padding-horizontal:10px;
-//$searchbar-ios-padding-vertical:10px;
+ 
 $searchbar-ios-min-height:55px;
 
-// $toolbar-ios-button-font-size           : 1.5rem;
+ 
 
  $toolbar-ios-title-font-size            :1.5rem  ;
  
 
+ $background-color:#f5f5f5;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

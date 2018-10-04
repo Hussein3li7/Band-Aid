@@ -26,26 +26,15 @@ export class AboutPage {
     console.log('ionViewDidLoad AboutPage');
    
 
-
-    
-
-
-
-     this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
-    this.hideAbout[0].style.display='none';
-
-      this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
-    this.hideTeam[0].style.display='none';
-
+    this.team();
   }
 
 
   team(){
-   
+  
 
-//     team  
-//  about
-
+    let bgcolor=document.getElementsByClassName('contant') as HTMLCollectionOf<HTMLElement>
+    bgcolor[0].style.backgroundColor="#2699fb"
 
  let borAbout=document.getElementsByClassName('about') as HTMLCollectionOf<HTMLElement>
  borAbout[0].style.borderBottomLeftRadius="100px"
@@ -60,15 +49,12 @@ export class AboutPage {
       this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
       this.hideTeam[0].style.display='block' 
       
-      let x =document.getElementsByClassName('conn-info') as  HTMLCollectionOf<HTMLElement>
-
-  for(let z=0;z<4;z++){
-      x[z].style.backgroundColor='#2699fb';
-  }
 
   }
 
 about(){
+  let bgcolor=document.getElementsByClassName('contant') as HTMLCollectionOf<HTMLElement>
+  bgcolor[0].style.backgroundColor="#f5f5f5"
 
     this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
   this.hideTeam[0].style.display='none' 
