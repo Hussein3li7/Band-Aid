@@ -16,7 +16,12 @@ import { SunstrokePage } from '../pages/sunstroke/sunstroke'
 import { ChokingPage } from '../pages/choking/choking'
 import { BloodCirculationPage } from '../pages/blood-circulation/blood-circulation'
 import { UnconsciousnessPage } from '../pages/unconsciousness/unconsciousness';
- 
+
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
+
+
+
 import { MusculoskeletalInjuriesPage } from '../pages/musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../pages/max-temperatures/max-temperatures';
  
@@ -43,12 +48,12 @@ import{AngularFireAuthModule} from '@angular/fire/auth'
 import { ApiServiseProvider } from '../providers/api-servise/api-servise';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDelTjJUT2zeXapaz5mexNU_Rn91prbN20",
-  authDomain: "first-aid-3fbf2.firebaseapp.com",
-  databaseURL: "https://first-aid-3fbf2.firebaseio.com",
-  projectId: "first-aid-3fbf2",
-  storageBucket: "first-aid-3fbf2.appspot.com",
-  messagingSenderId: "838370832497"
+  apiKey: "AIzaSyD7_PjUsYf5-URS5KSwkQPGRZGSFRAgj0Q",
+  authDomain: "first-3id-7.firebaseapp.com",
+  databaseURL: "https://first-3id-7.firebaseio.com",
+  projectId: "first-3id-7",
+  storageBucket: "",
+  messagingSenderId: "234231719187"
 };
 
 
@@ -120,7 +125,9 @@ export const firebaseConfig = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiServiseProvider,
-    CallNumber
+    CallNumber,
+    Facebook,
+    GooglePlus
 
   ]
 })

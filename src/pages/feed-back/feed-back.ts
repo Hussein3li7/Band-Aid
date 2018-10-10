@@ -6,7 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  import {AngularFireAuth} from '@angular/fire/auth'
   import * as firebase from  'firebase/app'
   import { AlertController } from 'ionic-angular';
-
+  import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 /**
  * Generated class for the FeedBackPage page.
@@ -24,25 +24,69 @@ export class FeedBackPage {
 
   feedBack:'';
   
-logedin:boolean=true;
+  logedinFirebase:boolean;
+ // logedinFacebook:boolean;
 
 feedbackList=this.db.list('FeedBack')
-  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
-
-
-
-    firebase.auth().onAuthStateChanged(userr=>{
-      if(userr){
-        this.logedin=true;
+  constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
+    
+    let checkFirease=firebase.auth().currentUser;
+    let checkFacebook;
+    fb.getLoginStatus().then((res:boolean)=>{
+      if(res){
+        checkFacebook=true;
       }
-      else{ 
-       this.logedin=false;
+
+    }).catch(er=>{
+      console.log(er)
+    });
+
+
+    if(checkFirease || checkFacebook){ 
+      this.logedinFirebase=true;
+}  
+    // else if(checkFacebook){ 
+    //   this.logedinFirebase=true;
+    // } 
+    else{
+      this.logedinFirebase=false;
       this.navCtrl.push(LoginPage)
-      }
-  })
+    }
+
+    // fb.getLoginStatus().then(checkFacebook=>{
+    //     if(checkFacebook){
+    //   this.logedinFirebase=true;
+    // }
+    //  else{
+    //   this.logedinFirebase=false;
+    //   this.navCtrl.push(LoginPage)
+    // }
+    // }).catch(err=>{
+    //   console.log(err)
+    // })
+//     fb.getLoginStatus().then(res=>{
+// if(res.status=="connected"){
+//   this.logedin=true
+// }else{
+//   this.logedin=false
+//   this.navCtrl.push(LoginPage)
+// }
+
+
+//     })
+
+  //   firebase.auth().onAuthStateChanged(userr=>{
+  //     if(userr){
+  //       this.logedinFirebase=true;
+  //     }
+  //     else{ 
+  //      this.logedinFirebase=false;
+  //     this.navCtrl.push(LoginPage)
+  //     }
+  // })
  
   }
-  
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedBackPage');
@@ -82,10 +126,28 @@ feedbackList=this.db.list('FeedBack')
         {
           text: 'نعم',
           handler: () => {
-            console.log('Agree clicked');
-            this.auth.auth.signOut().then(()=>{
+ 
+            let facebookUser=this.fb.getLoginStatus();
+
+            let fireBaseuser=firebase.auth().currentUser;
+
+            try
+            {
+                if(fireBaseuser){
+                  this.auth.auth.signOut().then(()=>{
               this.navCtrl.setRoot(HomePage)
-            });
+            })
+            }else  if(facebookUser){
+              this.fb.logout().then(()=>{
+                 this.navCtrl.setRoot(HomePage)
+              })        
+            }
+
+            }
+          catch(err){
+console.log(err)
+          }
+
           }
         }
       ]
@@ -97,7 +159,7 @@ feedbackList=this.db.list('FeedBack')
   showAlert() {
     const alert = this.alertCtrl.create({
       title: 'شكرا لك',
-      subTitle: 'شكرا لك على ملاحظات ',
+      subTitle: 'شكرا لك على ملاحظاتك ',
       buttons: ['OK']
     });
     alert.present();

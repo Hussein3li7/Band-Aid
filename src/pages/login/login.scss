@@ -8,9 +8,12 @@ page-login {
     }
 
  
+    .login-form{
+         text-align: right;
+    }
     .input{
         width: 100%;
-        text-align: right;
+       
         border: none;
         border-bottom: 1px solid #2699fb;
         font-size: 17px;
@@ -20,7 +23,7 @@ page-login {
     .lable{
         display: block;
         margin-top: 10px;
-        text-align: right;
+      
         color: #7d7d7d;
     }
     

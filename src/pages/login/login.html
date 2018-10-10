@@ -4,14 +4,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>تسجيل دخول</ion-title>
+<ion-header dir="rtl">
+  <ion-navbar color="orange">
+    <button ion-button menuToggle class="menus">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> تسجيل الدخول </ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
 
@@ -26,18 +26,20 @@
         <input [(ngModel)]="loginInfo.Email" class="input" type="email"  id="email">
         <label class="lable" for="pass"> كلمة السر</label>
         <input [(ngModel)]="loginInfo.Pass"  class="input" type="password" id="pass">
-        
+        <sub (click)="resetPass()" >?نسيت كلمة السر</sub>
           <button class="login" (click)="login()" >تسجيل الدخول</button>
       
           <p>او الدخول بواسطة </p>
-      
+     
           <div class="con-img-log">
       
-          <img (click)="loginWithGoogle()" class="log-soctial" src="../../assets/imgs/search.svg" alt="">
+          
+        <!-- <img (click)="LoginWIthFacebook()" class="log-soctial" src="../../assets/imgs/search.svg" alt="">   -->
+          
           <img (click)="LoginWIthFacebook()"  class="log-soctial" src="../../assets/imgs/facebook.svg" alt="">
       </div>
       
-      
+  
       <p>لا تمتلك حساب ?<span (click)="gotoRegister()">اضغط هنا</span> </p>
  
       </div>
