@@ -27,31 +27,89 @@ export class FeedBackPage {
   logedinFirebase:boolean;
  // logedinFacebook:boolean;
 
-feedbackList=this.db.list('FeedBack')
+ feedbackList=this.db.list('FeedBack')
+ feedbackobj=this.db.object('FeedBack')
+
+name:string;
+
   constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
     
+    this.name=navParams.get('data')
     let checkFirease=firebase.auth().currentUser;
-    let checkFacebook;
-    fb.getLoginStatus().then((res:boolean)=>{
-      if(res){
-        checkFacebook=true;
-      }
 
-    }).catch(er=>{
-      console.log(er)
-    });
-
-
-    if(checkFirease || checkFacebook){ 
+    if(this.name=='true'){
       this.logedinFirebase=true;
-}  
-    // else if(checkFacebook){ 
-    //   this.logedinFirebase=true;
-    // } 
+    }
+    else if(checkFirease){
+      this.logedinFirebase=true;
+    }
     else{
-      this.logedinFirebase=false;
+      this.logedinFirebase=false
       this.navCtrl.push(LoginPage)
     }
+
+    // fb.getLoginStatus().then(login=>{
+    //   if(login.status!=this.name){
+    //     this.logedinFirebase=false
+    //     this.navCtrl.push(LoginPage)
+    //   }
+    //   else if(login.status==this.name){
+    //     this.logedinFirebase=true;
+    //   }
+    //   else if(checkFirease){  
+    //       this.logedinFirebase=true;
+    // }  
+    //     // else if(checkFacebook){ 
+    //     //   this.logedinFirebase=true;
+    //     // } 
+      
+    // }).catch(er=>{
+    //   console.log(er)
+    // })
+
+
+    // this.feedbackobj.snapshotChanges().subscribe(user=>{
+    //   console.log(user.payload.val() )
+    //   //this.myObject = Object.entries(this.itemArray[0])
+    // })
+
+    // let checkFacebook;
+    // fb.getLoginStatus().then(res=>{
+    //   if(res){
+    //     checkFacebook=true;
+       
+    //   }
+    //   else if(res!="conneced"){
+
+    //     if(checkFirease){ 
+    //       this.logedinFirebase=true;
+          
+    // }  
+    //     // else if(checkFacebook){ 
+    //     //   this.logedinFirebase=true;
+    //     // } 
+    //     else{
+    //       this.logedinFirebase=false;
+    //       this.navCtrl.push(LoginPage)
+          
+    //     }
+    //   }
+
+    // }).catch(er=>{
+    //   console.log(er)
+    // });
+
+
+//     if(checkFirease){ 
+//       this.logedinFirebase=true;
+// }  
+//     // else if(checkFacebook){ 
+//     //   this.logedinFirebase=true;
+//     // } 
+//     else{
+//       this.logedinFirebase=false;
+//       this.navCtrl.push(LoginPage)
+//     }
 
     // fb.getLoginStatus().then(checkFacebook=>{
     //     if(checkFacebook){
@@ -111,6 +169,10 @@ feedbackList=this.db.list('FeedBack')
     // })
   }
 
+
+  goToLogin(){
+    this.navCtrl.push(LoginPage)
+  }
 
 
   showConfirm() {

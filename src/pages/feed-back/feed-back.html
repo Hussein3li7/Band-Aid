@@ -14,7 +14,7 @@
     </button>
 
     <ion-title>
-      ملاحظات
+      الملاحظات
     </ion-title>
 
     <ion-buttons   end>
@@ -28,10 +28,11 @@
 
 <ion-content >
 
-  <div *ngIf="logedinFirebase ; else notLogin " >
+  <div *ngIf="logedinFirebase; else notLogin " >
 
   <textarea name="feedBack" [(ngModel)]="feedBack" class="feed" placeholder="رأيك..." ></textarea>
 
+  <p> {{name}} </p>
 
 <button class="sendBtn" (click)="getFeedBack()"> ارسال <ion-icon name="send"></ion-icon>  </button>
 
@@ -40,6 +41,9 @@
 <ng-template #notLogin > 
  
   <p>يرجى تسجيل الدخول</p>
+
+
+  <button (click)="goToLogin()" class="goto" >login</button>
   
 </ng-template>
 

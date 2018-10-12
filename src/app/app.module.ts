@@ -38,12 +38,12 @@ import { COMPILER_PROVIDERS } from '@angular/platform-browser-dynamic/src/compil
 import { EmergencyBirthPage } from '../pages/emergency-birth/emergency-birth';
 import { WoundsPage } from '../pages/wounds/wounds';
 import {FeedBackPage} from '../pages/feed-back/feed-back'
-
 import{LoginPage} from '../pages/login/login'
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import{AngularFireAuthModule} from '@angular/fire/auth'
+
 
 import { ApiServiseProvider } from '../providers/api-servise/api-servise';
 
@@ -127,7 +127,8 @@ export const firebaseConfig = {
     ApiServiseProvider,
     CallNumber,
     Facebook,
-    GooglePlus
+    GooglePlus,
+
 
   ]
 })

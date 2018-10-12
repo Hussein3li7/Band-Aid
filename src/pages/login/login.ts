@@ -10,6 +10,7 @@ import { AlertController } from 'ionic-angular';
 
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 /**
  * 
@@ -27,7 +28,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 export class LoginPage {
 
 
-  private getInfoUser=this.db.list('facebookLoginData')
+  private getInfoUser=this.db.list('LoginData')
+  private getFacebookUserData=this.db.list('getFacebookUserData')
 
 
    
@@ -37,11 +39,12 @@ loginInfo={
 }
  
 facebookinfo={
-  email:'',
-  uid:'',
-  accestoken:'',
+   name:'',
+    email:'',
+
 }
  
+public loginFacebook=false;
 
 constructor(private googlePlus: GooglePlus,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,private fb: Facebook) {
 
@@ -64,7 +67,8 @@ gotoRegister(){
 }
 
 login(){
- 
+
+
   let chemail=document.getElementById('email') as HTMLInputElement;
   let chpass=document.getElementById('pass')as HTMLInputElement;
 
@@ -73,31 +77,40 @@ this.showAlert();
   }
   else{
       this.auth.auth.signInWithEmailAndPassword(this.loginInfo.Email,this.loginInfo.Pass).then( ()=>{
-     this.navCtrl.setRoot(HomePage)
+        
+     this.navCtrl.setRoot(FeedBackPage,{
+      data:"true"
+     })
  
   } ).catch(()=>{
     this.checkAvalidEmailAndPass();
   })
   }
 
-
-   
 }
 
 
 LoginWIthFacebook(){
-  this.fb.login(['public_profile', 'user_friends', 'email'])
-  .then((res:FacebookLoginResponse) =>  {
+  
+  this.fb.login(['email'])
+  .then((res: FacebookLoginResponse) =>{
+    this.fb.api("/me?fields=name,gender,birthday,email", []).then(user=>{
+      this.facebookinfo.name= user.name;
+      this.facebookinfo.email= user.email;
+      this.getFacebookUserData.push(this.facebookinfo)
+    })
+    this.navCtrl.setRoot(FeedBackPage,{
+      data:"true"
+     })
+  })
 
-  //   this.facebookinfo.accestoken=res.authResponse.accessToken;
-  //   this.facebookinfo.uid=res.authResponse.userID;
-  // let email:any=this.fb.api("/?fields=email,name,picture,gender",["public_profile"]);
-  //   this.getInfoUser.push(this.facebookinfo)
 
-  this.navCtrl.setRoot(HomePage)})
-  .catch(e => this.showAlert2());
+  .catch(e => console.log('Error logging into Facebook', e));
 
+
+ 
 }
+
 
 
 // loginWithGoogle(){
@@ -186,3 +199,4 @@ showPrompt() {
 }
 
 }
+
