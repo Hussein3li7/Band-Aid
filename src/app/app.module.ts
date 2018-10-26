@@ -20,7 +20,7 @@ import { UnconsciousnessPage } from '../pages/unconsciousness/unconsciousness';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
-
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 import { MusculoskeletalInjuriesPage } from '../pages/musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../pages/max-temperatures/max-temperatures';
@@ -43,7 +43,6 @@ import{LoginPage} from '../pages/login/login'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import{AngularFireAuthModule} from '@angular/fire/auth'
-
 
 import { ApiServiseProvider } from '../providers/api-servise/api-servise';
 
@@ -128,6 +127,7 @@ export const firebaseConfig = {
     CallNumber,
     Facebook,
     GooglePlus,
+    SpinnerDialog,
 
 
   ]

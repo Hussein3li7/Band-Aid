@@ -47,101 +47,6 @@ name:string;
       this.logedinFirebase=false
       this.navCtrl.push(LoginPage)
     }
-
-    // fb.getLoginStatus().then(login=>{
-    //   if(login.status!=this.name){
-    //     this.logedinFirebase=false
-    //     this.navCtrl.push(LoginPage)
-    //   }
-    //   else if(login.status==this.name){
-    //     this.logedinFirebase=true;
-    //   }
-    //   else if(checkFirease){  
-    //       this.logedinFirebase=true;
-    // }  
-    //     // else if(checkFacebook){ 
-    //     //   this.logedinFirebase=true;
-    //     // } 
-      
-    // }).catch(er=>{
-    //   console.log(er)
-    // })
-
-
-    // this.feedbackobj.snapshotChanges().subscribe(user=>{
-    //   console.log(user.payload.val() )
-    //   //this.myObject = Object.entries(this.itemArray[0])
-    // })
-
-    // let checkFacebook;
-    // fb.getLoginStatus().then(res=>{
-    //   if(res){
-    //     checkFacebook=true;
-       
-    //   }
-    //   else if(res!="conneced"){
-
-    //     if(checkFirease){ 
-    //       this.logedinFirebase=true;
-          
-    // }  
-    //     // else if(checkFacebook){ 
-    //     //   this.logedinFirebase=true;
-    //     // } 
-    //     else{
-    //       this.logedinFirebase=false;
-    //       this.navCtrl.push(LoginPage)
-          
-    //     }
-    //   }
-
-    // }).catch(er=>{
-    //   console.log(er)
-    // });
-
-
-//     if(checkFirease){ 
-//       this.logedinFirebase=true;
-// }  
-//     // else if(checkFacebook){ 
-//     //   this.logedinFirebase=true;
-//     // } 
-//     else{
-//       this.logedinFirebase=false;
-//       this.navCtrl.push(LoginPage)
-//     }
-
-    // fb.getLoginStatus().then(checkFacebook=>{
-    //     if(checkFacebook){
-    //   this.logedinFirebase=true;
-    // }
-    //  else{
-    //   this.logedinFirebase=false;
-    //   this.navCtrl.push(LoginPage)
-    // }
-    // }).catch(err=>{
-    //   console.log(err)
-    // })
-//     fb.getLoginStatus().then(res=>{
-// if(res.status=="connected"){
-//   this.logedin=true
-// }else{
-//   this.logedin=false
-//   this.navCtrl.push(LoginPage)
-// }
-
-
-//     })
-
-  //   firebase.auth().onAuthStateChanged(userr=>{
-  //     if(userr){
-  //       this.logedinFirebase=true;
-  //     }
-  //     else{ 
-  //      this.logedinFirebase=false;
-  //     this.navCtrl.push(LoginPage)
-  //     }
-  // })
  
   }
 
@@ -153,12 +58,22 @@ name:string;
 
 
   getFeedBack(){
-    this.feedbackList.push(this.feedBack).then(()=>{
+
+    let valuefield=document.getElementById('textFeed') as HTMLInputElement
+    
+    if(valuefield.value==""){
+    this.showAlertempityField()
+    }
+else{
+      this.feedbackList.push(this.feedBack).then(()=>{
  this.showAlert();
     })
+}
+
     
     let emptyFiled=document.getElementsByClassName('feed') as HTMLCollectionOf<HTMLInputElement>
     emptyFiled[0].value="";
+
   }
 
 
@@ -222,6 +137,16 @@ console.log(err)
     const alert = this.alertCtrl.create({
       title: 'شكرا لك',
       subTitle: 'شكرا لك على ملاحظاتك ',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+  showAlertempityField() {
+    const alert = this.alertCtrl.create({
+      title: 'خطا',
+      subTitle: 'الحقل فارغ ! ',
       buttons: ['OK']
     });
     alert.present();

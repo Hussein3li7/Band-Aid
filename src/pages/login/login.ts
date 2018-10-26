@@ -42,28 +42,24 @@ facebookinfo={
    name:'',
     email:'',
 
+
 }
  
 public loginFacebook=false;
 
-constructor(private googlePlus: GooglePlus,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,private fb: Facebook) {
+constructor(private googlePlus: GooglePlus,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,private fb: Facebook,private spinnerDialog: SpinnerDialog) {
 
 }
 
 ionViewDidLoad() {
   console.log('ionViewDidLoad FeedBackPage');
-  // let hideRegisterForm=document.getElementsByClassName('register-form')as HTMLCollectionOf<HTMLElement>
-  // hideRegisterForm[0].style.display="none"
   
 }
 
 gotoRegister(){
 
   this.navCtrl.push(RegisterPage)
-  // let hideLoginForm=document.getElementsByClassName('login-form')as HTMLCollectionOf<HTMLElement>
-  // hideLoginForm[0].style.display="none"
-  // let showRegisterForm=document.getElementsByClassName('register-form')as HTMLCollectionOf<HTMLElement>
-  // showRegisterForm[0].style.display="block"
+
 }
 
 login(){
@@ -76,11 +72,12 @@ login(){
 this.showAlert();
   }
   else{
+    this.spinnerDialog.show();
+
+
       this.auth.auth.signInWithEmailAndPassword(this.loginInfo.Email,this.loginInfo.Pass).then( ()=>{
-        
-     this.navCtrl.setRoot(FeedBackPage,{
-      data:"true"
-     })
+        this.spinnerDialog.hide();
+     this.navCtrl.setRoot(FeedBackPage)
  
   } ).catch(()=>{
     this.checkAvalidEmailAndPass();
@@ -94,7 +91,7 @@ LoginWIthFacebook(){
   
   this.fb.login(['email'])
   .then((res: FacebookLoginResponse) =>{
-    this.fb.api("/me?fields=name,gender,birthday,email", []).then(user=>{
+    this.fb.api("/me?fields=name,email", []).then(user=>{
       this.facebookinfo.name= user.name;
       this.facebookinfo.email= user.email;
       this.getFacebookUserData.push(this.facebookinfo)
@@ -102,13 +99,8 @@ LoginWIthFacebook(){
     this.navCtrl.setRoot(FeedBackPage,{
       data:"true"
      })
-  })
+  }).catch(e => console.log('Error logging into Facebook', e));
 
-
-  .catch(e => console.log('Error logging into Facebook', e));
-
-
- 
 }
 
 
@@ -136,7 +128,7 @@ LoginWIthFacebook(){
 
 
 resetPass(){
-  this.showPrompt();
+  this.showPromptRestPassword()
 }
 
 
@@ -169,7 +161,9 @@ checkAvalidEmailAndPass() {
   alert.present();
 }
 
-showPrompt() {
+
+
+showPromptRestPassword() {
   const prompt = this.alertCtrl.create({
     title: 'نسيت كلمة السر!',
     message: "ادخل الايميل رجاً لاستعادة كلمة السر",
@@ -190,13 +184,36 @@ showPrompt() {
         text: 'ارسال',
         handler: data => {
         console.log(data);
-        this.auth.auth.sendPasswordResetEmail(data.Email)
+        this.auth.auth.sendPasswordResetEmail(data.Email).then(sent=>{
+          this.CheckEmailtoresetPass();
+        }).catch(()=>{
+          this.checkErrorEmail();
+        })
         }
       }
     ]
   });
   prompt.present();
 }
+
+checkErrorEmail() {
+  const alert = this.alertCtrl.create({
+    title: 'خطأ',
+    subTitle: 'يرجى التأكد من الايميل',
+    buttons: ['OK']
+  });
+  alert.present();
+}
+
+CheckEmailtoresetPass() {
+  const alert = this.alertCtrl.create({
+    title: 'شكراً لك',
+    subTitle: 'تم ارسال رمز تعيين كلمة المرور الى الايميل',
+    buttons: ['OK']
+  });
+  alert.present();
+}
+
 
 }
 

@@ -16,20 +16,17 @@ import{StatePage} from '../state/state'
 })
 export class AboutPage {
 
-   hideAbout:any;
-   hideTeam:any;
+  open=true;
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutPage');
-   
 
-    this.team();
+  ionViewDidLoad() {
   }
 
-
+ 
   team(){
   
 
@@ -43,25 +40,24 @@ export class AboutPage {
     hidedate[0].style.backgroundColor="#2699fb"
     
     
-      this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
-      this.hideAbout[0].style.display='none'
+     let hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
+      hideAbout[0].style.display='none'
  
-      this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
-      this.hideTeam[0].style.display='block' 
+      let hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
+     hideTeam[0].style.display='block' 
       
-
   }
 
 about(){
   let bgcolor=document.getElementsByClassName('contant') as HTMLCollectionOf<HTMLElement>
   bgcolor[0].style.backgroundColor="#f5f5f5"
 
-    this.hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
-  this.hideTeam[0].style.display='none' 
+    let hideTeam=document.getElementsByClassName('conn-personal-info') as  HTMLCollectionOf<HTMLElement>
+   hideTeam[0].style.display='none' 
 
-    this.hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
-    this.hideAbout[0].style.display='block' 
-    this.hideAbout[0].style.backgroundColor="#f5f5f5"
+    let hideAbout=document.getElementsByClassName('conn-about-mob') as  HTMLCollectionOf<HTMLElement>
+    hideAbout[0].style.display='block' 
+    hideAbout[0].style.backgroundColor="#f5f5f5"
 
     let borAbout=document.getElementsByClassName('team') as HTMLCollectionOf<HTMLElement>
     borAbout[0].style.borderBottomRightRadius="100px"
@@ -72,4 +68,6 @@ about(){
 
 }
 
+
 }
+
