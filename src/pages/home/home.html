@@ -8,14 +8,13 @@
 </ion-header>
 
 <ion-content>
-
+  <h3 style=" text-align: center;" *ngIf="showUser" >{{curentUser}}</h3>
   <div class="backimg">
 
   <p>منتديات التدريب على الاسعافات االاولية</p>
 
   </div>
-
-
+  
   <div class="con-call-list">
 
     <div class="call-list">
@@ -35,10 +34,16 @@
       
       <img class="callll"  (click)="redcross2()" src="../../assets/imgs/Phone-1.png" alt="">
     </div>
+    <!-- <div class="call-list">
+      <img src="../../assets/imgs/hospital.svg" alt="">
 
-
+      <h4> حضرتي :-) :)  <br>
+        <h6>07815725184</h6>
+      </h4>
+      
+      <img class="callll"  (click)="redcross3()" src="../../assets/imgs/Phone-1.png" alt="">
+    </div> -->
+ 
   </div>
-
-
-
+ 
 </ion-content>

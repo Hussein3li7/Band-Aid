@@ -17,6 +17,8 @@ import { ChokingPage } from '../pages/choking/choking'
 import { BloodCirculationPage } from '../pages/blood-circulation/blood-circulation'
 import { UnconsciousnessPage } from '../pages/unconsciousness/unconsciousness';
 
+import { AddNewStatePage } from '../pages/add-new-state/add-new-state';
+import { AddTryingStationsPage } from '../pages/add-trying-stations/add-trying-stations';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -83,6 +85,8 @@ export const firebaseConfig = {
     EmergencyBirthPage,
     WoundsPage,
     PythonPage,
+    AddNewStatePage,
+    AddTryingStationsPage
   ],
   imports: [
     BrowserModule,
@@ -117,7 +121,9 @@ export const firebaseConfig = {
     LoginPage,
     WoundsPage,
     PythonPage,
-    RegisterPage
+    RegisterPage,
+    AddNewStatePage,
+    AddTryingStationsPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, Content, Button } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AddTryingStationsPage } from '../pages/add-trying-stations/add-trying-stations';
+import { AddNewStatePage } from '../pages/add-new-state/add-new-state';
 
 import { HomePage } from '../pages/home/home';
 
@@ -32,6 +34,8 @@ export class MyApp {
       { title: 'الحالات', component: StatePage,icon:'medkit'  }, 
       { title: 'مبادئ الاسعافات الاولية', component: PrinciplesPage,icon:'pulse'  }, 
       { title: 'اهداف الاسعافات الاولية', component: ObjectivesPage,icon:'leaf'  },
+      { title: ' اظافة حالات جديدة', component: AddNewStatePage,icon:'medal'  },
+      { title: ' اضافة مراكز تدريب ', component: AddTryingStationsPage,icon:'happy'  },
       { title: 'ملاحظات', component: FeedBackPage,icon:'podium'  } ,
       { title: 'حول', component: AboutPage,icon:'alert'  },
 

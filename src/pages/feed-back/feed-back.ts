@@ -7,14 +7,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   import * as firebase from  'firebase/app'
   import { AlertController } from 'ionic-angular';
   import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-
-/**
- * Generated class for the FeedBackPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+  import { ApiServiseProvider } from '../../providers/api-servise/api-servise'
+ 
 @IonicPage()
 @Component({
   selector: 'page-feed-back',
@@ -32,22 +26,32 @@ export class FeedBackPage {
 
 name:string;
 
-  constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase ) {
+  constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,public apiAuth:ApiServiseProvider  ) {
     
-    this.name=navParams.get('data')
-    let checkFirease=firebase.auth().currentUser;
 
-    if(this.name=='true'){
+    if(apiAuth.AuthState==true){
       this.logedinFirebase=true;
-    }
-    else if(checkFirease){
-      this.logedinFirebase=true;
-    }
-    else{
+    }else{
       this.logedinFirebase=false
       this.navCtrl.push(LoginPage)
     }
+
+    // this.name=navParams.get('data')
+    // let checkFirease=firebase.auth().currentUser;
+
+    // if(this.name=='true'){
+    //   this.logedinFirebase=true;
+    // }
+    // else if(checkFirease){
+    //   this.logedinFirebase=true;
+    // }
+    // else{
+    //   this.logedinFirebase=false
+    //   this.navCtrl.push(LoginPage)
+    // }
  
+
+
   }
 
 
@@ -84,11 +88,9 @@ else{
     // })
   }
 
-
   goToLogin(){
     this.navCtrl.push(LoginPage)
   }
-
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
@@ -112,10 +114,12 @@ else{
             {
                 if(fireBaseuser){
                   this.auth.auth.signOut().then(()=>{
+                    this.apiAuth.AuthState=false
               this.navCtrl.setRoot(HomePage)
             })
             }else  if(facebookUser){
               this.fb.logout().then(()=>{
+                this.apiAuth.AuthState=false
                  this.navCtrl.setRoot(HomePage)
               })        
             }

@@ -1,0 +1,40 @@
+
+<ion-header dir="rtl">
+  <ion-navbar color="orange">
+    <button ion-button menuToggle class="menus">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> اظافة حالة جديدة </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+
+  <div class="login-form"  *ngIf="logedinFirebase; else notLogin ">
+ 
+    <label class="lable" for="nameState"  >اسم الحالة</label>
+    <input class="input" type="text"  id="nameState" [(ngModel)]="getDataFromUser.stateName">
+
+    <div class="con-texterea" > 
+
+    <label class="lable" for="textFeed"> شرح عن الحالة </label>
+    <ion-icon class="clear " ios="ios-close-circle" md="md-close-circle" (click)="clear()" ></ion-icon> 
+    <textarea name="feedBack"  id="textFeed"class="feed" placeholder=" شرح عن الحالة" [(ngModel)]="getDataFromUser.explainState"  ></textarea>
+ 
+    </div>
+ 
+      <button class="login" (click)="SetNewState()"  [disabled]="disableButton"  > اظافة</button>
+    
+  </div>
+  
+
+  <ng-template #notLogin > 
+ 
+    <p>يرجى تسجيل الدخول</p>
+  
+  
+    <button (click)="goToLogin()" class="goto" >login</button>
+    
+  </ng-template>
+
+</ion-content>
