@@ -2,22 +2,42 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { AngularFireAuth } from '@angular/fire/auth';
+import{ApiServiseProvider} from '../../providers/api-servise/api-servise';
+import{MyApp} from '../../app/app.component'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  curentUser: string;
-  showUser = false
-  constructor(public navCtrl: NavController, public callNumber: CallNumber, public auth: AngularFireAuth) {
+  FireBaseUser: string;
+  FacebokUser: string;
+  showFirebaseUser = false
+  showFacebookUser = false
+  constructor(public navCtrl: NavController, public callNumber: CallNumber, public auth: AngularFireAuth,public apiAuth:ApiServiseProvider) {
 
-    if (this.auth.auth.currentUser != null) {
-      this.curentUser = this.auth.auth.currentUser.email
-      let NameOfcurentUser = this.curentUser.split("@");
-      this.curentUser = NameOfcurentUser[0]
-      this.showUser = true
+    if(apiAuth.UserName!=''){
+      this.FacebokUser=apiAuth.UserName
+      this.showFacebookUser=true
+    }else{
+      this.showFacebookUser=true
+    } 
+    //if (this.auth.auth.currentUser != null) {
+if(this.apiAuth.AuthState==true){
+      if(this.auth.auth.currentUser.email=='h@h.com'){
+        
+      MyApp.prototype.AuthState=true
+      }else {
+          
+      MyApp.prototype.AuthState=false //////////////For Admin Panal
+      }
+
+      this.FireBaseUser = this.auth.auth.currentUser.email
+      let NameOfcurentUser = this.FireBaseUser.split("@");
+      this.FireBaseUser = NameOfcurentUser[0]
+      this.showFirebaseUser = true
     } else {
-      this.showUser = false;
+      MyApp.prototype.AuthState=this.apiAuth.AuthState
+      this.showFirebaseUser = false;
     }
   }
 

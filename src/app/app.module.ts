@@ -16,7 +16,7 @@ import { SunstrokePage } from '../pages/sunstroke/sunstroke'
 import { ChokingPage } from '../pages/choking/choking'
 import { BloodCirculationPage } from '../pages/blood-circulation/blood-circulation'
 import { UnconsciousnessPage } from '../pages/unconsciousness/unconsciousness';
-
+import { AdminPage } from '../pages/admin/admin'
 import { AddNewStatePage } from '../pages/add-new-state/add-new-state';
 import { AddTryingStationsPage } from '../pages/add-trying-stations/add-trying-stations';
 import { Facebook } from '@ionic-native/facebook';
@@ -26,12 +26,12 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 import { MusculoskeletalInjuriesPage } from '../pages/musculoskeletal-injuries/musculoskeletal-injuries';
 import { MaxTemperaturesPage } from '../pages/max-temperatures/max-temperatures';
- 
+
 import { AchesPage } from '../pages/aches/aches';
 import { MajorAccidentsPage } from '../pages/major-accidents/major-accidents';
- 
-import {PythonPage} from '../pages/python/python'
- import {RegisterPage} from '../pages/register/register'
+
+import { PythonPage } from '../pages/python/python'
+import { RegisterPage } from '../pages/register/register'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,12 +39,12 @@ import { COMPONENT_VARIABLE } from '@angular/platform-browser/src/dom/dom_render
 import { COMPILER_PROVIDERS } from '@angular/platform-browser-dynamic/src/compiler_factory';
 import { EmergencyBirthPage } from '../pages/emergency-birth/emergency-birth';
 import { WoundsPage } from '../pages/wounds/wounds';
-import {FeedBackPage} from '../pages/feed-back/feed-back'
-import{LoginPage} from '../pages/login/login'
+import { FeedBackPage } from '../pages/feed-back/feed-back'
+import { LoginPage } from '../pages/login/login'
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import{AngularFireAuthModule} from '@angular/fire/auth'
+import { AngularFireAuthModule } from '@angular/fire/auth'
 
 import { ApiServiseProvider } from '../providers/api-servise/api-servise';
 
@@ -86,7 +86,8 @@ export const firebaseConfig = {
     WoundsPage,
     PythonPage,
     AddNewStatePage,
-    AddTryingStationsPage
+    AddTryingStationsPage,
+    AdminPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +95,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -123,7 +124,8 @@ export const firebaseConfig = {
     PythonPage,
     RegisterPage,
     AddNewStatePage,
-    AddTryingStationsPage
+    AddTryingStationsPage,
+    AdminPage
   ],
   providers: [
     StatusBar,

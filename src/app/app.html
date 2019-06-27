@@ -12,9 +12,17 @@
   </div>
     <ion-list class="cal">
  
-      <div class="btn" menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <div *ngIf="AuthState" class="btn" menuClose (click)="AdminPage()" > الادارة <ion-icon name="people"></ion-icon> </div>
+
+      <div class="btn" menuClose *ngFor="let p of pages"(click)="openPage(p)" >
+       
+        <div  *ngIf="p.show" >
+          
+              <span > {{p.title}}</span>
+       
             <ion-icon [name]="p.icon"></ion-icon>
+        </div>
+ 
       </div>
  
     </ion-list>
