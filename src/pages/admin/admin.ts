@@ -20,13 +20,30 @@ export class AdminPage {
   newStateSmallData = []
   NewStationsFullData = []
   newStationsSmallData = []
+
+
+  conFiremdState = {
+    StateName: '',
+    ExplainState: '',
+    PulisherName: ''
+  }
+  conFiremdStations = {
+    orginaztionsName: '',
+    orginaztionsNumber: '',
+    publisherName: ''
+  }
+
+  StateKey: string = ''
+  StationsKey: string = ''
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public ApiPro: ApiServiseProvider, public db: AngularFireDatabase, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+
     this.getNewState()
     this.getNewStations()
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminPage');
 
   }
 
@@ -34,10 +51,9 @@ export class AdminPage {
   ShowState(defulatView) {
 
     this.defulatView = defulatView
-
   }
 
-  getNewState() {
+  async getNewState() {
 
     this.presentLoading()
 
@@ -47,12 +63,9 @@ export class AdminPage {
       if (action.payload.val() == null || action.payload.val() == undefined) {
         console.log('no data')
       } else {
-
         this.NewStateFullData.push(action.payload.val())
         this.newStateSmallData = Object.entries(this.NewStateFullData[0])
 
-        console.log(this.NewStateFullData)
-        console.log(this.newStateSmallData)
       }
 
     });
@@ -69,8 +82,6 @@ export class AdminPage {
         this.NewStationsFullData.push(action.payload.val())
         this.newStationsSmallData = Object.entries(this.NewStationsFullData[0])
 
-        console.log(this.NewStationsFullData)
-        console.log(this.newStationsSmallData)
       }
 
     });
@@ -81,50 +92,47 @@ export class AdminPage {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1000,
+      duration: 500,
     });
     loader.present();
   }
 
+  showConfirmAddState(StateName: string, ExplainState: string, PublisherName: string, key: string, index: number) {
 
-  showConfirmAddState(StateName:string , ExplainState:string) {
+    this.conFiremdState.StateName = StateName;
+    this.conFiremdState.ExplainState = ExplainState;
+    this.conFiremdState.PulisherName = PublisherName;
+    this.StateKey = key
+
+
     const confirm = this.alertCtrl.create({
       title: StateName,
       message: ExplainState,
-      buttons: [
-        {
-          text: 'Disagree',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Agree',
-          handler: () => {
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
-  showConfirmAddStations(StateName:string , ExplainState:string,PublisherName:string) {
-    const confirm = this.alertCtrl.create({
-      title: StateName,
-      message: ExplainState,
-      subTitle:PublisherName,
       buttons: [
         {
           text: 'حذف',
           handler: () => {
-            console.log('Disagree clicked');
+            this.RemoveStateAfterConfirmed()
+            setTimeout(() => {
+
+              this.NewStationsFullData.splice(index, 1)
+            }, 500)
+
           }
         },
         {
           text: 'اظافة',
           handler: () => {
-            console.log('Agree clicked');
+            this.AddNewStateAfterConfiremd()
+
+            setTimeout(() => {
+              this.RemoveStateAfterConfirmed()
+              setTimeout(() => {
+
+                this.NewStationsFullData.splice(index, 1)
+              }, 500)
+            }, 1000)
+
           }
         }
       ]
@@ -132,6 +140,69 @@ export class AdminPage {
     confirm.present();
   }
 
+  showConfirmAddStations(orginaztionsName: string, orginaztionsNumber: string, publisherName: string, key: string, state: number) {
+
+    this.conFiremdStations.orginaztionsName = orginaztionsName
+    this.conFiremdStations.orginaztionsNumber = orginaztionsNumber
+    this.conFiremdStations.publisherName = publisherName
+    this.StationsKey = key
+
+    let index = this.newStationsSmallData.indexOf(state)
+
+    const confirm = this.alertCtrl.create({
+      title: orginaztionsName,
+      message: orginaztionsNumber,
+      buttons: [
+        {
+          text: 'حذف',
+          handler: () => {
+            this.RemoveStationsAfterConfirmed()
+            setTimeout(()=>{
+
+            this.newStationsSmallData.splice(index, 1)
+            },500)
+          }
+        },
+        {
+          text: 'اظافة',
+          handler: () => {
+            this.AddNewStationsAfterConfiremd()
+            setTimeout(() => {
+              this.RemoveStationsAfterConfirmed()
+              setTimeout(()=>{
+
+                this.newStationsSmallData.splice(index, 1)
+                },500)
+            }, 1000)
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  AddNewStateAfterConfiremd() {
+
+    this.ApiPro.AddNewStateAfterConfiremd(this.conFiremdState.StateName, this.conFiremdState.ExplainState, this.conFiremdState.PulisherName)
+
+  }
+
+  RemoveStateAfterConfirmed() {
+    this.ApiPro.RemoveStateAfterConfirmed(this.StateKey)
+
+  }
+
+  AddNewStationsAfterConfiremd() {
+
+    this.ApiPro.AddNewStationsAfterConfiremd(this.conFiremdStations.orginaztionsName, this.conFiremdStations.orginaztionsNumber, this.conFiremdStations.publisherName)
+
+  }
+
+  RemoveStationsAfterConfirmed() {
+    this.ApiPro.RemoveStationsAfterConfirmed(this.StationsKey)
+
+  }
 
 }
 

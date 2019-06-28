@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { AngularFireAuth } from '@angular/fire/auth';
-import{ApiServiseProvider} from '../../providers/api-servise/api-servise';
-import{MyApp} from '../../app/app.component'
+import { ApiServiseProvider } from '../../providers/api-servise/api-servise';
+import { MyApp } from '../../app/app.component'
+import { AngularFireDatabase } from '@angular/fire/database';
+import { noUndefined } from '@angular/compiler/src/util';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,22 +16,34 @@ export class HomePage {
   FacebokUser: string;
   showFirebaseUser = false
   showFacebookUser = false
-  constructor(public navCtrl: NavController, public callNumber: CallNumber, public auth: AngularFireAuth,public apiAuth:ApiServiseProvider) {
 
-    if(apiAuth.UserName!=''){
-      this.FacebokUser=apiAuth.UserName
-      this.showFacebookUser=true
-    }else{
-      this.showFacebookUser=true
-    } 
+
+  ConfirmedFullStationsArray = []
+  ConfirmedSmallStationsArray = []
+
+   Network=false
+
+  constructor(public navCtrl: NavController, public callNumber: CallNumber, public auth: AngularFireAuth, public apiAuth: ApiServiseProvider, public db: AngularFireDatabase) {
+
+    this.GetConfiremdStations()
+
+    this.Network=true
+    try {
+      
+    if (apiAuth.UserName != '') {
+      this.FacebokUser = apiAuth.UserName
+      this.showFacebookUser = true
+    } else {
+      this.showFacebookUser = true
+    }
     //if (this.auth.auth.currentUser != null) {
-if(this.apiAuth.AuthState==true){
-      if(this.auth.auth.currentUser.email=='h@h.com'){
-        
-      MyApp.prototype.AuthState=true
-      }else {
-          
-      MyApp.prototype.AuthState=false //////////////For Admin Panal
+    if (this.apiAuth.AuthState == true) {
+      if (this.auth.auth.currentUser.email == 'h@h.com') {
+
+        MyApp.prototype.AuthState = true
+      } else {
+
+        MyApp.prototype.AuthState = false //////////////For Admin Panal
       }
 
       this.FireBaseUser = this.auth.auth.currentUser.email
@@ -36,9 +51,13 @@ if(this.apiAuth.AuthState==true){
       this.FireBaseUser = NameOfcurentUser[0]
       this.showFirebaseUser = true
     } else {
-      MyApp.prototype.AuthState=this.apiAuth.AuthState
+      MyApp.prototype.AuthState = this.apiAuth.AuthState
       this.showFirebaseUser = false;
     }
+    } catch (error) {
+      console.log("No Internet")
+    }
+
   }
 
   redcross1() {
@@ -60,25 +79,35 @@ if(this.apiAuth.AuthState==true){
 
   }
 
-  // ambulance() {
-  //   this.callNumber.callNumber("122", true)
-  //     .then(res => console.log('Launched dialer!', res))
-  //     .catch(err => console.log('Error launching dialer', err));
-  // }
 
-  // Cvile() {
-  //   this.callNumber.callNumber("115", true)
-  //     .then(res => console.log('Launched dialer!', res))
-  //     .catch(err => console.log('Error launching dialer', err));
-  // }
+ async GetConfiremdStations() {
 
-  // midical() {
-  //   this.callNumber.callNumber("404", true)
-  //     .then(res => console.log('Launched dialer!', res))
-  //     .catch(err => console.log('Error launching dialer', err));
-  // }
+  try {
+    
+  let GetConfirmedStations = this.db.object('ConfirmedStations')
+     GetConfirmedStations.snapshotChanges().subscribe(data => {
+      if (data.payload.val() != null || data.payload.val() != undefined) {
+        this.ConfirmedFullStationsArray.push(data.payload.val())
+        this.ConfirmedSmallStationsArray = Object.entries(this.ConfirmedFullStationsArray[0])
+ this.Network=false
+      } else {
+        console.log("No Data")
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    
+  }
 
+  }
 
-
+  Call(number:string){
+    this.callNumber.callNumber(number,true).then(res=>{
+         console.log("Call Done")
+    }).catch(err=>{
+     // alert("حصل خطأ اثناء الاتصال")
+     alert(number)
+    })
+  }
 
 }

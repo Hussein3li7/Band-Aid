@@ -8,43 +8,65 @@
 </ion-header>
 
 <ion-content>
-  <h3 style=" text-align: center;" *ngIf="showFirebaseUser" >{{FireBaseUser}}</h3>
-  <h3 style=" text-align: center;" *ngIf="showFacebookUser" >{{FacebokUser}}</h3>
+  <h3 style=" text-align: center;" *ngIf="showFirebaseUser">{{FireBaseUser}}</h3>
+  <h3 style=" text-align: center;" *ngIf="showFacebookUser">{{FacebokUser}}</h3>
   <div class="backimg">
 
-  <p>منتديات التدريب على الاسعافات االاولية</p>
+    <p>منتديات التدريب على الاسعافات االاولية</p>
 
   </div>
-  
+
   <div class="con-call-list">
 
     <div class="call-list">
       <img src="../../assets/imgs/hospital.svg" alt="">
-      <h4>    الهلال الأحمر العراقي<br>
-        <h6> 0770 674 0075 </h6>
-      </h4>
-
+      <div class="con-info-call">
+        <h4> الهلال الأحمر العراقي<br>
+          <h6> 0770 674 0075 </h6>
+        </h4>
+      </div>
       <img class="callll" (click)="redcross1()" src="../../assets/imgs/Phone-1.png" alt="">
     </div>
     <div class="call-list">
       <img src="../../assets/imgs/hospital.svg" alt="">
 
-      <h4> الدفاع  المدني  العراقي <br>
-        <h6>0770 778 9533</h6>
-      </h4>
-      
-      <img class="callll"  (click)="redcross2()" src="../../assets/imgs/Phone-1.png" alt="">
+      <div class="con-info-call">
+        <h4> الدفاع المدني العراقي <br>
+          <h6>0770 778 9533</h6>
+        </h4>
+      </div>
+      <img class="callll" (click)="redcross2()" src="../../assets/imgs/Phone-1.png" alt="">
     </div>
-    <!-- <div class="call-list">
-      <img src="../../assets/imgs/hospital.svg" alt="">
-
-      <h4> حضرتي :-) :)  <br>
-        <h6>07815725184</h6>
-      </h4>
-      
-      <img class="callll"  (click)="redcross3()" src="../../assets/imgs/Phone-1.png" alt="">
-    </div> -->
  
   </div>
  
+  <div class="con-loading" *ngIf="Network">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <h2>loading</h2>
+
+  </div> 
+  <div class="con-call-list" *ngFor="let Number of ConfirmedSmallStationsArray">
+ 
+    <div class="call-list">
+      <img src="../../assets/imgs/hospital.svg" alt="">
+
+      <div class="con-info-call">
+      <h4> {{Number[1]['orginaztionsName']}} <br>
+        <h6> {{Number[1]['orginaztionsNumber']}} </h6>
+      </h4>
+    </div>
+
+      <img class="callll" (click)="Call(Number[1]['orginaztionsNumber'])" src="../../assets/imgs/Phone-1.png" alt="">
+    </div>
+
+  </div>
+
 </ion-content>
