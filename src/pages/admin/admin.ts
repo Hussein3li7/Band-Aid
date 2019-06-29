@@ -36,6 +36,8 @@ export class AdminPage {
   StateKey: string = ''
   StationsKey: string = ''
 
+  NewStateNum = 0
+  NewStationsNum = 0
   constructor(public navCtrl: NavController, public navParams: NavParams, public ApiPro: ApiServiseProvider, public db: AngularFireDatabase, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
 
     this.getNewState()
@@ -65,13 +67,13 @@ export class AdminPage {
       } else {
         this.NewStateFullData.push(action.payload.val())
         this.newStateSmallData = Object.entries(this.NewStateFullData[0])
-
+        this.NewStateNum = this.newStateSmallData.length
       }
 
     });
 
   }
-  getNewStations() {
+  async getNewStations() {
     this.GetnewStationsData = this.db.object('StationsAddedByUser');
     this.GetnewStationsData.snapshotChanges().subscribe(action => {
 
@@ -81,7 +83,7 @@ export class AdminPage {
 
         this.NewStationsFullData.push(action.payload.val())
         this.newStationsSmallData = Object.entries(this.NewStationsFullData[0])
-
+        this.NewStationsNum = this.newStationsSmallData.length
       }
 
     });
@@ -157,10 +159,10 @@ export class AdminPage {
           text: 'حذف',
           handler: () => {
             this.RemoveStationsAfterConfirmed()
-            setTimeout(()=>{
+            setTimeout(() => {
 
-            this.newStationsSmallData.splice(index, 1)
-            },500)
+              this.newStationsSmallData.splice(index, 1)
+            }, 500)
           }
         },
         {
@@ -169,10 +171,10 @@ export class AdminPage {
             this.AddNewStationsAfterConfiremd()
             setTimeout(() => {
               this.RemoveStationsAfterConfirmed()
-              setTimeout(()=>{
+              setTimeout(() => {
 
                 this.newStationsSmallData.splice(index, 1)
-                },500)
+              }, 500)
             }, 1000)
 
           }
