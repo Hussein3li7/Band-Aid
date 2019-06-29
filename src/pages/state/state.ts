@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { BrokenPage } from '../broken/broken';
 import { FaintingPage } from '../fainting/fainting';
 import { BurnsPage } from '../burns/burns'
@@ -14,22 +14,12 @@ import { MajorAccidentsPage } from '../major-accidents/major-accidents';
 import { EmergencyBirthPage } from '../emergency-birth/emergency-birth';
 import { WoundsPage } from '../wounds/wounds';
 import { PythonPage } from '../python/python';
-import * as firebase from 'firebase/app'
-import {AngularFireDatabase,AngularFireList, AngularFireObject} from '@angular/fire/database'
+import { AngularFireDatabase } from '@angular/fire/database'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { FeedBackPage } from '../../pages/feed-back/feed-back'
-//import { AngularFireDatabase, AngularFireList,  } from 'angularfire2/database'
-/**
- * Generated class for the StatePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 
 @Component({
   selector: 'page-state',
-  templateUrl: 'state.html',
+  templateUrl: 'state.html', 
 })
 export class StatePage {
 
@@ -37,17 +27,19 @@ export class StatePage {
   items: string[];
   items2: string[];
   val: any
- 
+  val2: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public auth: AngularFireAuth) {
- 
+  Network = false
+
+  ConfrimedStateFullData = []
+  ConfrimedStateSmallData = []
+
+  constructor(public navCtrl: NavController, public db: AngularFireDatabase, public auth: AngularFireAuth, private Modal: ModalController) {
+
 
     this.initializeItems();
-
- 
- 
-
- 
+    this.Network = true
+    this.GetConfirmedData()
 
   }
 
@@ -77,8 +69,9 @@ export class StatePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatePage');
- 
+
   }
+
 
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -86,8 +79,6 @@ export class StatePage {
 
     // set val to the value of the searchbar
     this.val = ev.target.value;
-    this.items2 = this.val
-    console.log(this.val)
 
     // if the value is an empty string don't filter the items
     if (this.val && this.val.trim() != '') {
@@ -101,8 +92,6 @@ export class StatePage {
   goToDatails(getitems) {
 
     for (let i of this.items) {
-
-      console.log(getitems)
 
       if (i == getitems) {
 
@@ -165,7 +154,43 @@ export class StatePage {
   }
 
 
+  GetConfirmedData() {
 
+    try {
+
+      let ConfirmedData = this.db.object('ConfirmedState')
+      ConfirmedData.snapshotChanges().subscribe(data => {
+        if (data.payload.val() != null || data.payload.val() != undefined) {
+          this.ConfrimedStateFullData.push(data.payload.val())
+          this.ConfrimedStateSmallData = Object.entries(this.ConfrimedStateFullData[0])
+
+          this.Network = false
+        } else {
+          console.log("No data")
+        }
+      })
+
+    } catch (error) {
+
+    }
+
+
+  }
+
+
+  openModal(StateName: String, ExplainState: string) {
+
+    const myModalData = {
+      StateName: StateName,
+      ExplainState: ExplainState
+    }
+
+    const myModal = this.Modal.create('ModalPage', { Data: myModalData })
+
+    myModal.present()
+
+
+  }
 
 
 

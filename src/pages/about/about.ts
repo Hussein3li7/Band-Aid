@@ -56,8 +56,7 @@ about(){
     hideAbout[0].style.backgroundColor="#f5f5f5"
 
     let borAbout=document.getElementsByClassName('team') as HTMLCollectionOf<HTMLElement>
-    borAbout[0].style.borderBottomRightRadius="100px"
-    borAbout[0].style.borderTopRightRadius="5px"
+    borAbout[0].style.borderBottomRightRadius="100px" 
 
   let hide_date=document.getElementsByClassName('conn-btn-details') as HTMLCollectionOf<HTMLElement>
     hide_date[0].style.backgroundColor="#f5f5f5"
