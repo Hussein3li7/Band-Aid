@@ -19,7 +19,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 
 @Component({
   selector: 'page-state',
-  templateUrl: 'state.html', 
+  templateUrl: 'state.html',
 })
 export class StatePage {
 
@@ -178,13 +178,15 @@ export class StatePage {
   }
 
 
-  openModal(StateName: String, ExplainState: string,symptoms:string) {
+  openModal(StateName: String, ExplainState: string, symptoms: string,publisherName:string, key: string) {
 
     const myModalData = {
       StateName: StateName,
       ExplainState: ExplainState,
-      symptoms:symptoms
-    }
+      symptoms: symptoms,
+      publisherName:publisherName,
+      key: key
+    } 
 
     const myModal = this.Modal.create('ModalPage', { Data: myModalData })
 

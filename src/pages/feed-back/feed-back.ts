@@ -43,7 +43,12 @@ name:string;
     }
 
 
-    this.feedBackObj.EmailOfPublisher = this.auth.auth.currentUser.email
+          
+    if (apiAuth.UserName != '') { 
+        this.feedBackObj.EmailOfPublisher = this.auth.auth.currentUser.email
+    }
+
+ 
 
   } 
  

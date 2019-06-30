@@ -75,7 +75,7 @@ export class LoginPage {
         this.checkAvalidEmailAndPass();
       })
     }
-    this.DisableLogin=true
+    this.DisableLogin=false
   }
 
   LoginWIthFacebook() {
@@ -134,6 +134,7 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+    this.DisableLogin=false
   }
 
 
@@ -144,6 +145,7 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+    this.DisableLogin=false
   }
 
   checkAvalidEmailAndPass() {
@@ -153,6 +155,7 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+    this.DisableLogin=false
   }
 
 
@@ -197,6 +200,7 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+    this.DisableLogin=false
   }
 
   CheckEmailtoresetPass() {
@@ -206,6 +210,7 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+    this.DisableLogin=false
   }
 
 

@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,AlertController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ApiServiseProvider } from '../../providers/api-servise/api-servise';
 import { MyApp } from '../../app/app.component'
-import { AngularFireDatabase } from '@angular/fire/database';
-import { noUndefined } from '@angular/compiler/src/util';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database'; 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,6 +15,7 @@ export class HomePage {
   showFirebaseUser = false
   showFacebookUser = false
 
+  EditeForm=false
 
   ConfirmedFullStationsArray = []
   ConfirmedSmallStationsArray = []
@@ -38,7 +37,7 @@ export class HomePage {
     }
     //if (this.auth.auth.currentUser != null) {
     if (this.apiAuth.AuthState == true) {
-      if (this.auth.auth.currentUser.email == 'h@h.com') {
+      if (this.auth.auth.currentUser.email == 'h@h.com' || this.auth.auth.currentUser.email=='zainabimad71@gmail.com') {
 
         MyApp.prototype.AuthState = true
       } else {
@@ -109,5 +108,8 @@ export class HomePage {
      alert(number)
     })
   }
+
+
+
 
 }

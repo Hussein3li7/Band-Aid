@@ -39,7 +39,7 @@ export class MyApp {
       { title: 'مبادئ الاسعافات الاولية', component: PrinciplesPage, icon: 'pulse', show: true },
       { title: 'اهداف الاسعافات الاولية', component: ObjectivesPage, icon: 'leaf', show: true },
       { title: ' اظافة حالات جديدة', component: AddNewStatePage, icon: 'medal', show: true },
-      { title: ' اضافة مراكز تدريب ', component: AddTryingStationsPage, icon: 'happy', show: true },
+      { title: ' اظافة مراكز تدريب ', component: AddTryingStationsPage, icon: 'happy', show: true },
       { title: 'ملاحظات', component: FeedBackPage, icon: 'podium', show: true },
       { title: 'حول', component: AboutPage, icon: 'alert', show: true },
 
