@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
- 
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -9,11 +9,15 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
 })
 export class ModalPage {
 
-  Title=''
+  StateDataObj = {
+    Title: '',
+    ExplainState: '',
+    symptoms: ''
+  }
 
-  ExplainState=''
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private ViewCtr:ViewController) {
+
+  constructor( public navParams: NavParams, private ViewCtr: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -21,19 +25,20 @@ export class ModalPage {
   }
 
 
-  CloseModal(){
+  CloseModal() {
     this.ViewCtr.dismiss()
   }
 
-  GetDataFromStatePage(){
-   const ArrayGotData = this.navParams.get('Data')
-  this.Title=ArrayGotData['StateName']
-this.ExplainState=ArrayGotData['ExplainState']
+  GetDataFromStatePage() {
+    const ArrayGotData = this.navParams.get('Data')
+    this.StateDataObj.Title = ArrayGotData['StateName']
+    this.StateDataObj.ExplainState = ArrayGotData['ExplainState']
+    this.StateDataObj.symptoms = ArrayGotData['symptoms']
 
 
 
-   console.log(ArrayGotData)
-  
+    console.log(ArrayGotData)
+
   }
 
 }

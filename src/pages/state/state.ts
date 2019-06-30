@@ -178,11 +178,12 @@ export class StatePage {
   }
 
 
-  openModal(StateName: String, ExplainState: string) {
+  openModal(StateName: String, ExplainState: string,symptoms:string) {
 
     const myModalData = {
       StateName: StateName,
-      ExplainState: ExplainState
+      ExplainState: ExplainState,
+      symptoms:symptoms
     }
 
     const myModal = this.Modal.create('ModalPage', { Data: myModalData })

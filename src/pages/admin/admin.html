@@ -11,7 +11,7 @@
   <div class="con-btn">
 
     <button (click)="ShowState('NewState')"> عرض الحالات الجديدة <small> {{NewStateNum}} </small> </button>
-    <button (click)="ShowState('NewStations')"> عرض المراكز الجديدة  <small> {{NewStationsNum}} </small> </button>
+    <button (click)="ShowState('NewStations')"> عرض المراكز الجديدة <small> {{NewStationsNum}} </small> </button>
 
   </div>
   <br>
@@ -35,7 +35,7 @@
               <div class="con-button">
 
                 <button
-                  (click)="showConfirmAddState(state[1]['stateName'] ,state[1]['explainState'], state[1]['publisherName'],state[0],i )">
+                  (click)="showConfirmAddState(state[1]['stateName'] ,state[1]['explainState'],state[1]['symptoms'] , state[1]['publisherName'],state[0],i )">
                   عرض </button>
               </div>
             </ion-item>

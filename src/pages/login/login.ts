@@ -37,6 +37,8 @@ export class LoginPage {
 
   }
 
+  DisableLogin=false
+
   public loginFacebook = false;
 
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public auth: AngularFireAuth, public db: AngularFireDatabase, private fb: Facebook, private spinnerDialog: SpinnerDialog, public apiAuth: ApiServiseProvider ) {
@@ -62,8 +64,8 @@ export class LoginPage {
     if (chemail.value == "" && chpass.value == "") {
       this.showAlert();
     }
-    else {
-      this.spinnerDialog.show('login', 'برجى الانتضار');
+    else { 
+      this.DisableLogin=true
       this.auth.auth.signInWithEmailAndPassword(this.loginInfo.Email, this.loginInfo.Pass).then(() => {
         this.apiAuth.AuthState = true 
         this.spinnerDialog.hide();
@@ -73,6 +75,7 @@ export class LoginPage {
         this.checkAvalidEmailAndPass();
       })
     }
+    this.DisableLogin=true
   }
 
   LoginWIthFacebook() {

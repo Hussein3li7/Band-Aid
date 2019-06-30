@@ -16,7 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedBackPage {
 
-  feedBack:'';
+  feedBackObj={
+    feedBack:'',
+    EmailOfPublisher:''
+  }
   
   logedinFirebase:boolean;
  // logedinFacebook:boolean;
@@ -25,6 +28,9 @@ export class FeedBackPage {
  feedbackobj=this.db.object('FeedBack')
 
 name:string;
+
+
+
 
   constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,public apiAuth:ApiServiseProvider  ) {
     
@@ -36,45 +42,24 @@ name:string;
       this.navCtrl.push(LoginPage)
     }
 
-    // this.name=navParams.get('data')
-    // let checkFirease=firebase.auth().currentUser;
 
-    // if(this.name=='true'){
-    //   this.logedinFirebase=true;
-    // }
-    // else if(checkFirease){
-    //   this.logedinFirebase=true;
-    // }
-    // else{
-    //   this.logedinFirebase=false
-    //   this.navCtrl.push(LoginPage)
-    // }
+    this.feedBackObj.EmailOfPublisher = this.auth.auth.currentUser.email
+
+  } 
  
-
-
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedBackPage');
-  }
-
-
-
   getFeedBack(){
 
     let valuefield=document.getElementById('textFeed') as HTMLInputElement
     
-    if(valuefield.value==""){
+    if(valuefield.value.trim()==""){
     this.showAlertempityField()
     }
 else{
-      this.feedbackList.push(this.feedBack).then(()=>{
+      this.feedbackList.push(this.feedBackObj).then(()=>{
  this.showAlert();
     })
 }
 
-    
     let emptyFiled=document.getElementsByClassName('feed') as HTMLCollectionOf<HTMLInputElement>
     emptyFiled[0].value="";
 

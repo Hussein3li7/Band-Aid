@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
-
+import { AngularFireDatabase } from '@angular/fire/database'
 import { LoginPage } from '../../pages/login/login'
 import { AngularFireAuth } from '@angular/fire/auth'
-import * as firebase from 'firebase/app'
 import { ApiServiseProvider } from '../../providers/api-servise/api-servise';
 @IonicPage()
 @Component({
@@ -18,6 +16,7 @@ export class AddNewStatePage {
   getDataFromUser = {
     stateName: '',
     explainState: '',
+    symptoms: '',
     publisherName: ''
   }
   disableButton = false
@@ -25,46 +24,29 @@ export class AddNewStatePage {
   logedinFirebase: boolean;
   name: string;
   curentUser: any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl: AlertController, public auth: AngularFireAuth, public apiAuth:ApiServiseProvider  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl: AlertController, public auth: AngularFireAuth, public apiAuth: ApiServiseProvider) {
 
 
- if(apiAuth.AuthState==true){
-      this.logedinFirebase=true;
-    }else{
-      this.logedinFirebase=false
+    if (apiAuth.AuthState == true) {
+      this.logedinFirebase = true;
+    } else {
+      this.logedinFirebase = false
       this.navCtrl.push(LoginPage)
     }
 
-
-
-    // this.name = navParams.get('data')
-    // let checkFirease = firebase.auth().currentUser;
-
-    // if (this.name == 'true') {
-    //   this.logedinFirebase = true;
-    // }
-    // else if (checkFirease) {
-    //   this.logedinFirebase = true;
-    // }
-    // else {
-    //   this.logedinFirebase = false
-    //   this.navCtrl.push(LoginPage)
-    // }
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddNewStatePage');
 
   }
 
   SetNewState() {
     let nameState = document.getElementById('nameState') as HTMLInputElement;
     let textFeed = document.getElementById('textFeed') as HTMLInputElement;
+    let textSymptoms = document.getElementById('textSymptoms') as HTMLInputElement;
+
+    console.log(this.getDataFromUser)
 
     this.getDataFromUser.publisherName = this.curentUser = this.auth.auth.currentUser.email
 
-    if (nameState.value.trim() !== "" && textFeed.value.trim() !== "") {
+    if (nameState.value.trim() !== "" && textFeed.value.trim() !== "" && textSymptoms.value.trim() !== '') {
 
       this.disableButton = true
       this.fireList.push(this.getDataFromUser).then(() => {
@@ -87,6 +69,14 @@ export class AddNewStatePage {
     let textErea = document.getElementById('textFeed') as HTMLInputElement
 
     textErea.value = ""
+
+  }
+
+  clearsymptoms() {
+
+    let textSymptoms = document.getElementById('textSymptoms') as HTMLInputElement;
+
+    textSymptoms.value = ""
 
   }
 

@@ -21,6 +21,7 @@ export class ApiServiseProvider {
   conFiremdState = {
     StateName: '',
     ExplainState: '',
+    symptoms:'',
     PulisherName: ''
   }
   conFiremdStations = {
@@ -55,12 +56,12 @@ export class ApiServiseProvider {
 
 
 
-  AddNewStateAfterConfiremd(StateName: string, ExplainState: string, PublisherName: string) {
+  AddNewStateAfterConfiremd(StateName: string, ExplainState: string,symptoms:string, PublisherName: string) {
 
     this.conFiremdState.StateName = StateName
     this.conFiremdState.ExplainState = ExplainState,
       this.conFiremdState.PulisherName = PublisherName
-
+this.conFiremdState.symptoms=symptoms
     return this.AddConfirmedState.push(this.conFiremdState)
 
   }

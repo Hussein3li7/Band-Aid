@@ -6,7 +6,7 @@
         <ion-buttons end >
             <button ion-button (click)="CloseModal()"> <b>  Close <ion-icon name="arrow-back"></ion-icon> </b> </button>  
             </ion-buttons>
-      <ion-title>  {{Title}}</ion-title>
+      <ion-title> {{StateDataObj.Title}} </ion-title>
     </ion-navbar>
   </ion-header>
   
@@ -18,9 +18,21 @@
 
         <li>
   
-            <ul> <p>{{Title}} </p>
+            <ul> <p>{{StateDataObj.Title}} </p>
             
-              <li> {{ExplainState}} </li>
+              <p>الاعراض</p>
+
+              <li> {{StateDataObj.symptoms}} </li>
+
+            </ul>
+ 
+            </li>
+
+        <li>
+  
+            <ul> <p>{{StateDataObj.Title}} </p>
+            
+              <li> {{StateDataObj.ExplainState}} </li>
 
             </ul>
 

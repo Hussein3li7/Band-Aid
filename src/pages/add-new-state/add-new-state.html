@@ -17,6 +17,14 @@
 
     <div class="con-texterea" > 
 
+    <label class="lable" for="textFeed"> الاعراض </label>
+    <ion-icon class="clear " ios="ios-close-circle" md="md-close-circle" (click)="clearsymptoms()" ></ion-icon> 
+    <textarea name="feedBack"  id="textSymptoms"class="feed" placeholder=" الاعراض" [(ngModel)]="getDataFromUser.symptoms"  ></textarea>
+ 
+    </div>
+  
+    <div class="con-texterea" > 
+
     <label class="lable" for="textFeed"> شرح عن الحالة </label>
     <ion-icon class="clear " ios="ios-close-circle" md="md-close-circle" (click)="clear()" ></ion-icon> 
     <textarea name="feedBack"  id="textFeed"class="feed" placeholder=" شرح عن الحالة" [(ngModel)]="getDataFromUser.explainState"  ></textarea>

@@ -25,6 +25,7 @@ export class AdminPage {
   conFiremdState = {
     StateName: '',
     ExplainState: '',
+    symptoms:'',
     PulisherName: ''
   }
   conFiremdStations = {
@@ -99,11 +100,12 @@ export class AdminPage {
     loader.present();
   }
 
-  showConfirmAddState(StateName: string, ExplainState: string, PublisherName: string, key: string, index: number) {
+  showConfirmAddState(StateName: string, ExplainState: string,symptoms:string, PublisherName: string, key: string, index: number) {
 
     this.conFiremdState.StateName = StateName;
     this.conFiremdState.ExplainState = ExplainState;
     this.conFiremdState.PulisherName = PublisherName;
+    this.conFiremdState.symptoms=symptoms
     this.StateKey = key
 
 
@@ -117,7 +119,7 @@ export class AdminPage {
             this.RemoveStateAfterConfirmed()
             setTimeout(() => {
 
-              this.NewStationsFullData.splice(index, 1)
+              this.newStateSmallData.splice(index, 1)
             }, 500)
 
           }
@@ -131,7 +133,7 @@ export class AdminPage {
               this.RemoveStateAfterConfirmed()
               setTimeout(() => {
 
-                this.NewStationsFullData.splice(index, 1)
+                this.newStateSmallData.splice(index, 1)
               }, 500)
             }, 1000)
 
@@ -186,7 +188,7 @@ export class AdminPage {
 
   AddNewStateAfterConfiremd() {
 
-    this.ApiPro.AddNewStateAfterConfiremd(this.conFiremdState.StateName, this.conFiremdState.ExplainState, this.conFiremdState.PulisherName)
+    this.ApiPro.AddNewStateAfterConfiremd(this.conFiremdState.StateName, this.conFiremdState.ExplainState,this.conFiremdState.symptoms, this.conFiremdState.PulisherName)
 
   }
 

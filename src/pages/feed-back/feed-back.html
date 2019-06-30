@@ -29,7 +29,7 @@
 
   <div *ngIf="logedinFirebase; else notLogin " >
 
-  <textarea name="feedBack" [(ngModel)]="feedBack" id="textFeed"class="feed" placeholder="رأيك..." ></textarea>
+  <textarea name="feedBack" [(ngModel)]="feedBackObj.feedBack" id="textFeed"class="feed" placeholder="رأيك..." ></textarea>
 
 <button class="sendBtn" (click)="getFeedBack()"> ارسال <ion-icon name="send"></ion-icon>  </button>
 
