@@ -41,7 +41,7 @@ export class EditFormPage {
     this.getDataFromUser.StateName = ArrayGotData['StateName']
     this.getDataFromUser.ExplainState = ArrayGotData['ExplainState']
     this.getDataFromUser.symptoms = ArrayGotData['symptoms']
-    this.getDataFromUser.PulisherName = ArrayGotData['publisherName']
+    this.getDataFromUser.PulisherName = ArrayGotData['PulisherName']
     this.key = ArrayGotData['key']
 
   }
@@ -57,13 +57,25 @@ export class EditFormPage {
 
       let DataObj = this.db.list('ConfirmedState')
 
-      DataObj.set(this.key, this.getDataFromUser).then(() => console.log('success'))
-        .catch(err => console.log(err, 'You do not have access!'));
+      DataObj.set(this.key, this.getDataFromUser).then(() => {
+        this.DoneUpdate()
+      }
+      ).catch(err => console.log(err, 'You do not have access!'));
 
     } catch (error) {
       console.log(this.key + this.getDataFromUser)
     }
 
   }
+ 
+  DoneUpdate() {
+    const alert = this.alertContrl.create({
+      title: 'تم',
+      subTitle: 'تم التحديث بنجاح',
+      buttons: ['ok']
+    });
+    alert.present();
+  }
+
 
 }

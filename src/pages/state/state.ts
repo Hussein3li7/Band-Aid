@@ -39,7 +39,11 @@ export class StatePage {
 
     this.initializeItems();
     this.Network = true
+
     this.GetConfirmedData()
+
+
+
 
   }
 
@@ -54,13 +58,9 @@ export class StatePage {
       'الاختناق',
       'اظطرابات الدورة الدموية',
       'التسمم',
-
       'اصابات العضلات والمفاصل',
       'تاثير درجات الحرارة القصوى',
-
       'الاوجاع',
-
-
       'الولادة الطارئة',
       'الافاعي والعقارب'
     ];
@@ -91,65 +91,58 @@ export class StatePage {
 
   goToDatails(getitems) {
 
-    for (let i of this.items) {
 
-      if (i == getitems) {
+    if (getitems == 'الكسر') {
 
-        if (i == 'الكسر') {
-
-          this.navCtrl.push(BrokenPage)
-
-        }
-        else if (i == 'ضربة شمس') {
-
-          this.navCtrl.push(SunstrokePage)
-        }
-        else if (i == 'الجروح والنزف') {
-
-          this.navCtrl.push(WoundsPage)
-        }
-        else if (i == 'الحروق') {
-
-          this.navCtrl.push(BurnsPage)
-        }
-        else if (i == 'الاغماء') {
-          this.navCtrl.push(FaintingPage)
-        }
-        else if (i == 'الاختناق') {
-          this.navCtrl.push(ChokingPage)
-        }
-        else if (i == 'اظطرابات الدورة الدموية') {
-          this.navCtrl.push(BloodCirculationPage)
-        }
-        else if (i == 'التسمم') {
-          this.navCtrl.push(UnconsciousnessPage)
-        }
-
-        else if (i == 'اصابات العضلات والمفاصل') {
-          this.navCtrl.push(MusculoskeletalInjuriesPage)
-        }
-        else if (i == 'تاثير درجات الحرارة القصوى') {
-          this.navCtrl.push(MaxTemperaturesPage)
-        }
-
-        else if (i == 'الاوجاع') {
-          this.navCtrl.push(AchesPage)
-        }
-        else if (i == 'التصرف في الحوادث الكبرى') {
-          this.navCtrl.push(MajorAccidentsPage)
-        }
-
-
-        else if (i == 'الولادة الطارئة') {
-          this.navCtrl.push(EmergencyBirthPage)
-        }
-        else if (i == 'الافاعي والعقارب') {
-          this.navCtrl.push(PythonPage)
-        }
-
-      }
+      this.navCtrl.push(BrokenPage)
 
     }
+    else if (getitems == 'ضربة شمس') {
+
+      this.navCtrl.push(SunstrokePage)
+    }
+    else if (getitems == 'الجروح والنزف') {
+
+      this.navCtrl.push(WoundsPage)
+    }
+    else if (getitems == 'الحروق') {
+
+      this.navCtrl.push(BurnsPage)
+    }
+    else if (getitems == 'الاغماء') {
+      this.navCtrl.push(FaintingPage)
+    }
+    else if (getitems == 'الاختناق') {
+      this.navCtrl.push(ChokingPage)
+    }
+    else if (getitems == 'اظطرابات الدورة الدموية') {
+      this.navCtrl.push(BloodCirculationPage)
+    }
+    else if (getitems == 'التسمم') {
+      this.navCtrl.push(UnconsciousnessPage)
+    }
+
+    else if (getitems == 'اصابات العضلات والمفاصل') {
+      this.navCtrl.push(MusculoskeletalInjuriesPage)
+    }
+    else if (getitems == 'تاثير درجات الحرارة القصوى') {
+      this.navCtrl.push(MaxTemperaturesPage)
+    }
+
+    else if (getitems == 'الاوجاع') {
+      this.navCtrl.push(AchesPage)
+    }
+    else if (getitems == 'التصرف في الحوادث الكبرى') {
+      this.navCtrl.push(MajorAccidentsPage)
+    }
+
+
+    else if (getitems == 'الولادة الطارئة') {
+      this.navCtrl.push(EmergencyBirthPage)
+    }
+    else if (getitems == 'الافاعي والعقارب') {
+      this.navCtrl.push(PythonPage)
+    } 
 
   }
 
@@ -174,19 +167,17 @@ export class StatePage {
 
     }
 
-
   }
 
-
-  openModal(StateName: String, ExplainState: string, symptoms: string,publisherName:string, key: string) {
+  openModal(StateName: String, ExplainState: string, symptoms: string, PulisherName: string, key: string) {
 
     const myModalData = {
       StateName: StateName,
       ExplainState: ExplainState,
       symptoms: symptoms,
-      publisherName:publisherName,
+      PulisherName: PulisherName,
       key: key
-    } 
+    }
 
     const myModal = this.Modal.create('ModalPage', { Data: myModalData })
 
@@ -194,9 +185,6 @@ export class StatePage {
 
 
   }
-
-
-
 
 }
 

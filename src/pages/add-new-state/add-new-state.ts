@@ -17,7 +17,8 @@ export class AddNewStatePage {
     stateName: '',
     explainState: '',
     symptoms: '',
-    publisherName: ''
+    publisherName: '',
+    Url: ''
   }
   disableButton = false
 
@@ -41,12 +42,13 @@ export class AddNewStatePage {
     let nameState = document.getElementById('nameState') as HTMLInputElement;
     let textFeed = document.getElementById('textFeed') as HTMLInputElement;
     let textSymptoms = document.getElementById('textSymptoms') as HTMLInputElement;
+    let URL = document.getElementById('URL') as HTMLInputElement;
 
     console.log(this.getDataFromUser)
 
     this.getDataFromUser.publisherName = this.curentUser = this.auth.auth.currentUser.email
 
-    if (nameState.value.trim() !== "" && textFeed.value.trim() !== "" && textSymptoms.value.trim() !== '') {
+    if (nameState.value.trim() !== "" && textFeed.value.trim() !== "" && textSymptoms.value.trim() !== '' && URL.value.trim() !== '') {
 
       this.disableButton = true
       this.fireList.push(this.getDataFromUser).then(() => {

@@ -12,9 +12,12 @@
   
 <ion-content padding>
 
+  <div class="con-EditForm" *ngIf="showEditeButton" >
+
+  <button class="EditButton" (click)="openModal()" >  تعديل  <ion-icon name="create"></ion-icon>  </button>
+  <button class="DeleteButton" (click)="DeleteState()" >  <ion-icon name="trash"></ion-icon> حذف</button>
+  </div>
   
-  <button ion-button (click)="openModal()" > تعديل</button>
-  <button ion-button danger (click)="DeleteState()" > حذف</button>
   
 
     <ul class="main-ul" dir="rtl">

@@ -41,9 +41,9 @@
 
   </div> 
 
-    <ion-list *ngFor="let State of ConfrimedStateSmallData" >
+    <ion-list *ngFor="let State of ConfrimedStateSmallData " >
       <ion-item class="ionItem" >
-         <button class="dedails-btn" (click)="openModal(State[1]['StateName'] ,State[1]['ExplainState'] ,State[1]['symptoms'] ,State[1]['publisherName'],State[0] )" >  التفاصيل &nbsp;  <ion-icon color="light" name="md-information"></ion-icon> 
+         <button class="dedails-btn" (click)="openModal(State[1]['StateName'] ,State[1]['ExplainState'] ,State[1]['symptoms'] ,State[1]['PulisherName'],State[0] )" >  التفاصيل &nbsp;  <ion-icon color="light" name="md-information"></ion-icon> 
         </button>   
         {{ State[1]['StateName'] }} 
       </ion-item>

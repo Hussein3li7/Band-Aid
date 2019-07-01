@@ -37,7 +37,7 @@ export class HomePage {
     }
     //if (this.auth.auth.currentUser != null) {
     if (this.apiAuth.AuthState == true) {
-      if (this.auth.auth.currentUser.email == 'h@h.com' || this.auth.auth.currentUser.email=='zainabimad71@gmail.com') {
+      if (this.auth.auth.currentUser.email == 'h@h.com' || this.auth.auth.currentUser.email=='zainabimad71@gmail.com'||this.auth.auth.currentUser.email=='mayadahnaji@gmail.com') {
 
         MyApp.prototype.AuthState = true
       } else {

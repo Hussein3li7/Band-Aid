@@ -14,6 +14,9 @@
  
     <label class="lable" for="nameState"  >اسم الحالة</label>
     <input class="input" type="text"  id="nameState" [(ngModel)]="getDataFromUser.stateName">
+    
+    <label class="lable" for="URL"  > مصدر العلاج</label>
+    <input class="input" type="text" placeholder="اسم او رابط الكتاب " id="URL" [(ngModel)]="getDataFromUser.Url">
 
     <div class="con-texterea" > 
 
@@ -25,7 +28,7 @@
   
     <div class="con-texterea" > 
 
-    <label class="lable" for="textFeed"> شرح عن الحالة </label>
+    <label class="lable" for="textFeed"> الاسعافات الاولية </label>
     <ion-icon class="clear " ios="ios-close-circle" md="md-close-circle" (click)="clear()" ></ion-icon> 
     <textarea name="feedBack"  id="textFeed"class="feed" placeholder=" شرح عن الحالة" [(ngModel)]="getDataFromUser.explainState"  ></textarea>
  

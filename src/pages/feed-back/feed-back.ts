@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
- import {LoginPage} from '../../pages/login/login'
- import { AngularFireDatabase,AngularFireList } from '@angular/fire/database'
- import {HomePage} from '../../pages/home/home'
- import {AngularFireAuth} from '@angular/fire/auth'
-  import * as firebase from  'firebase/app'
-  import { AlertController } from 'ionic-angular';
-  import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-  import { ApiServiseProvider } from '../../providers/api-servise/api-servise'
- 
+import { LoginPage } from '../../pages/login/login'
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
+import { HomePage } from '../../pages/home/home'
+import { AngularFireAuth } from '@angular/fire/auth'
+import * as firebase from 'firebase/app'
+import { AlertController } from 'ionic-angular';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { ApiServiseProvider } from '../../providers/api-servise/api-servise'
+
 @IonicPage()
 @Component({
   selector: 'page-feed-back',
@@ -16,69 +16,74 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedBackPage {
 
-  feedBackObj={
-    feedBack:'',
-    EmailOfPublisher:''
+  feedBackObj = {
+    feedBack: '',
+    EmailOfPublisher: ''
   }
-  
-  logedinFirebase:boolean;
- // logedinFacebook:boolean;
 
- feedbackList=this.db.list('FeedBack')
- feedbackobj=this.db.object('FeedBack')
+  logedinFirebase: boolean;
+  // logedinFacebook:boolean;
 
-name:string;
+  feedbackList = this.db.list('FeedBack')
+  feedbackobj = this.db.object('FeedBack')
 
-
+  name: string;
 
 
-  constructor(private fb: Facebook,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public auth:AngularFireAuth,public db:AngularFireDatabase,public apiAuth:ApiServiseProvider  ) {
-    
 
-    if(apiAuth.AuthState==true){
-      this.logedinFirebase=true;
-    }else{
-      this.logedinFirebase=false
+
+  constructor(private fb: Facebook, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public auth: AngularFireAuth, public db: AngularFireDatabase, public apiAuth: ApiServiseProvider) {
+
+
+    if (apiAuth.AuthState == true) {
+      this.logedinFirebase = true;
+    } else {
+      this.logedinFirebase = false
       this.navCtrl.push(LoginPage)
     }
 
-
-          
-    if (apiAuth.UserName != '') { 
+    try {
+      if (apiAuth.AuthState = false) {
+        return
+      } else {
         this.feedBackObj.EmailOfPublisher = this.auth.auth.currentUser.email
+      }
+
+    } catch (error) {
+      console.log(error)
     }
 
- 
 
-  } 
- 
-  getFeedBack(){
 
-    let valuefield=document.getElementById('textFeed') as HTMLInputElement
-    
-    if(valuefield.value.trim()==""){
-    this.showAlertempityField()
+  }
+
+  getFeedBack() {
+
+    let valuefield = document.getElementById('textFeed') as HTMLInputElement
+
+    if (valuefield.value.trim() == "") {
+      this.showAlertempityField()
     }
-else{
-      this.feedbackList.push(this.feedBackObj).then(()=>{
- this.showAlert();
-    })
-}
+    else {
+      this.feedbackList.push(this.feedBackObj).then(() => {
+        this.showAlert();
+      })
+    }
 
-    let emptyFiled=document.getElementsByClassName('feed') as HTMLCollectionOf<HTMLInputElement>
-    emptyFiled[0].value="";
+    let emptyFiled = document.getElementsByClassName('feed') as HTMLCollectionOf<HTMLInputElement>
+    emptyFiled[0].value = "";
 
   }
 
 
-  logut(){
+  logut() {
     this.showConfirm()
     // this.auth.auth.signOut().then(()=>{
     //   this.navCtrl.setRoot(HomePage)
     // })
   }
 
-  goToLogin(){
+  goToLogin() {
     this.navCtrl.push(LoginPage)
   }
 
@@ -95,29 +100,28 @@ else{
         {
           text: 'نعم',
           handler: () => {
- 
-            let facebookUser=this.fb.getLoginStatus();
 
-            let fireBaseuser=firebase.auth().currentUser;
+            let facebookUser = this.fb.getLoginStatus();
 
-            try
-            {
-                if(fireBaseuser){
-                  this.auth.auth.signOut().then(()=>{
-                    this.apiAuth.AuthState=false
-              this.navCtrl.setRoot(HomePage)
-            })
-            }else  if(facebookUser){
-              this.fb.logout().then(()=>{
-                this.apiAuth.AuthState=false
-                 this.navCtrl.setRoot(HomePage)
-              })        
+            let fireBaseuser = firebase.auth().currentUser;
+
+            try {
+              if (fireBaseuser) {
+                this.auth.auth.signOut().then(() => {
+                  this.apiAuth.AuthState = false
+                  this.navCtrl.setRoot(HomePage)
+                })
+              } else if (facebookUser) {
+                this.fb.logout().then(() => {
+                  this.apiAuth.AuthState = false
+                  this.navCtrl.setRoot(HomePage)
+                })
+              }
+
             }
-
+            catch (err) {
+              console.log(err)
             }
-          catch(err){
-console.log(err)
-          }
 
           }
         }
