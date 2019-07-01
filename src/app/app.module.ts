@@ -21,6 +21,7 @@ import { AddNewStatePage } from '../pages/add-new-state/add-new-state';
 import { AddTryingStationsPage } from '../pages/add-trying-stations/add-trying-stations';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Clipboard } from '@ionic-native/clipboard';
 
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
@@ -34,9 +35,7 @@ import { PythonPage } from '../pages/python/python'
 import { RegisterPage } from '../pages/register/register'
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { COMPONENT_VARIABLE } from '@angular/platform-browser/src/dom/dom_renderer';
-import { COMPILER_PROVIDERS } from '@angular/platform-browser-dynamic/src/compiler_factory';
+import { SplashScreen } from '@ionic-native/splash-screen'; 
 import { EmergencyBirthPage } from '../pages/emergency-birth/emergency-birth';
 import { WoundsPage } from '../pages/wounds/wounds';
 import { FeedBackPage } from '../pages/feed-back/feed-back'
@@ -136,7 +135,7 @@ export const firebaseConfig = {
     Facebook,
     GooglePlus,
     SpinnerDialog,
-
+    Clipboard
 
   ]
 })

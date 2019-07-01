@@ -52,10 +52,7 @@ export class ModalPage {
     } catch (error) {
       return error
     }
-
-
-
-
+ 
   }
 
   openModal() {

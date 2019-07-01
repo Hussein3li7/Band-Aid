@@ -30,7 +30,7 @@
 
                 <h2> {{state[1]['stateName'] }} </h2>
                 <h3> {{state[1]['explainState'] }} </h3>
-                <h2> <a  [href]=" state[1]['Url'] ">{{state[1]['Url']}}</a> </h2>
+                <h2 id="URL" (click)="CopyUrl() " > {{state[1]['Url']}} </h2>
                 <h4> {{state[1]['publisherName'] }}</h4>
               </div>
               <div class="con-button">

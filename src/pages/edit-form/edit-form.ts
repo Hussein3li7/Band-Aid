@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, AlertController, NavController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
-
+import { StatePage } from '../state/state'
 
 @IonicPage()
 @Component({
@@ -30,7 +30,7 @@ export class EditFormPage {
   }
   key: ''
 
-  constructor(public navParams: NavParams, private ViewCtr: ViewController, public alertContrl: AlertController, public db: AngularFireDatabase) {
+  constructor(public navParams: NavParams, private ViewCtr: ViewController, public alertContrl: AlertController, public db: AngularFireDatabase, private navCtrl: NavController) {
 
     this.GetDataFromStatePage()
 
@@ -59,6 +59,9 @@ export class EditFormPage {
 
       DataObj.set(this.key, this.getDataFromUser).then(() => {
         this.DoneUpdate()
+        setTimeout(() => {
+          this.navCtrl.push(StatePage)
+        }, 200)
       }
       ).catch(err => console.log(err, 'You do not have access!'));
 
@@ -67,7 +70,7 @@ export class EditFormPage {
     }
 
   }
- 
+
   DoneUpdate() {
     const alert = this.alertContrl.create({
       title: 'تم',

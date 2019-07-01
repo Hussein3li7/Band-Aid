@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { ApiServiseProvider } from '../../providers/api-servise/api-servise'
 import { Observable } from 'rxjs';
-import { NewStationsModel, NewStateModel } from '../../Model/NewState'
+import { NewStateModel } from '../../Model/NewState'
+import { Clipboard } from '@ionic-native/clipboard';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { UrlResolver } from '@angular/compiler';
 @IonicPage()
 @Component({
   selector: 'page-admin',
@@ -25,7 +27,7 @@ export class AdminPage {
   conFiremdState = {
     StateName: '',
     ExplainState: '',
-    symptoms:'',
+    symptoms: '',
     PulisherName: ''
   }
   conFiremdStations = {
@@ -39,7 +41,7 @@ export class AdminPage {
 
   NewStateNum = 0
   NewStationsNum = 0
-  constructor(public navCtrl: NavController, public navParams: NavParams, public ApiPro: ApiServiseProvider, public db: AngularFireDatabase, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public ApiPro: ApiServiseProvider, public db: AngularFireDatabase, public loadingCtrl: LoadingController, public alertCtrl: AlertController, private clipboard: Clipboard) {
 
     this.getNewState()
     this.getNewStations()
@@ -100,12 +102,12 @@ export class AdminPage {
     loader.present();
   }
 
-  showConfirmAddState(StateName: string, ExplainState: string,symptoms:string, PublisherName: string, key: string, index: number) {
+  showConfirmAddState(StateName: string, ExplainState: string, symptoms: string, PublisherName: string, key: string, index: number) {
 
     this.conFiremdState.StateName = StateName;
     this.conFiremdState.ExplainState = ExplainState;
     this.conFiremdState.PulisherName = PublisherName;
-    this.conFiremdState.symptoms=symptoms
+    this.conFiremdState.symptoms = symptoms
     this.StateKey = key
 
 
@@ -188,7 +190,7 @@ export class AdminPage {
 
   AddNewStateAfterConfiremd() {
 
-    this.ApiPro.AddNewStateAfterConfiremd(this.conFiremdState.StateName, this.conFiremdState.ExplainState,this.conFiremdState.symptoms, this.conFiremdState.PulisherName)
+    this.ApiPro.AddNewStateAfterConfiremd(this.conFiremdState.StateName, this.conFiremdState.ExplainState, this.conFiremdState.symptoms, this.conFiremdState.PulisherName)
 
   }
 
@@ -206,6 +208,31 @@ export class AdminPage {
   RemoveStationsAfterConfirmed() {
     this.ApiPro.RemoveStationsAfterConfirmed(this.StationsKey)
 
+  }
+
+
+  CopyUrl() {
+
+    let URL = document.getElementById('URL') as HTMLInputElement
+
+    this.clipboard.copy(URL.innerText).then(()=>{
+      this.ShowCopedURL()
+    }).catch(err=>{
+      alert(URL.innerText)
+    })
+  }
+
+  ShowCopedURL(){
+    const Coped = this.alertCtrl.create({
+      title:'تم نسخ الرابط الى الحافظة',
+      buttons:[{
+        text:'Ok',
+        handler:data=>{
+          return
+        }
+      }]
+    })
+    Coped.present()
   }
 
 }

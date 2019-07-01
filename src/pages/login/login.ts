@@ -82,6 +82,7 @@ export class LoginPage {
 
     this.fb.login(['email'])
       .then((res: FacebookLoginResponse) => {
+    
         this.fb.api("/me?fields=name,email", []).then(user => {
           this.facebookinfo.name = user.name;
           this.facebookinfo.email = user.email;
