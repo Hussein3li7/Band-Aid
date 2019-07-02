@@ -47,10 +47,11 @@ export class EditFormPage {
   }
 
   CloseModal() {
-    this.ViewCtr.dismiss()
+    const data = {
+      re: 'true'
+    }
+    this.ViewCtr.dismiss(data)
   }
-
-
   SaveUpdateinfo() {
 
     try {
@@ -59,9 +60,7 @@ export class EditFormPage {
 
       DataObj.set(this.key, this.getDataFromUser).then(() => {
         this.DoneUpdate()
-        setTimeout(() => {
-          this.navCtrl.push(StatePage)
-        }, 200)
+
       }
       ).catch(err => console.log(err, 'You do not have access!'));
 
@@ -75,7 +74,13 @@ export class EditFormPage {
     const alert = this.alertContrl.create({
       title: 'تم',
       subTitle: 'تم التحديث بنجاح',
-      buttons: ['ok']
+      buttons: [{
+        text: 'Ok',
+        handler: data => {
+         this.navCtrl.popAll() 
+          // this.CloseModal()
+        }
+      }]
     });
     alert.present();
   }

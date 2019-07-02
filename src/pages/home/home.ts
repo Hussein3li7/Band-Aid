@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ApiServiseProvider } from '../../providers/api-servise/api-servise';
 import { MyApp } from '../../app/app.component'
-import { AngularFireDatabase } from '@angular/fire/database'; 
+import { AngularFireDatabase } from '@angular/fire/database';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,44 +15,44 @@ export class HomePage {
   showFirebaseUser = false
   showFacebookUser = false
 
-  EditeForm=false
+  EditeForm = false
 
   ConfirmedFullStationsArray = []
   ConfirmedSmallStationsArray = []
 
-   Network=false
+  Network = false
 
   constructor(public navCtrl: NavController, public callNumber: CallNumber, public auth: AngularFireAuth, public apiAuth: ApiServiseProvider, public db: AngularFireDatabase) {
 
     this.GetConfiremdStations()
 
-    this.Network=true
+    this.Network = true
     try {
-      
-    if (apiAuth.UserName != '') {
-      this.FacebokUser = apiAuth.UserName
-      this.showFacebookUser = true
-    } else {
-      this.showFacebookUser = true
-    }
-    //if (this.auth.auth.currentUser != null) {
-    if (this.apiAuth.AuthState == true) {
-      if (this.auth.auth.currentUser.email == 'h@h.com' || this.auth.auth.currentUser.email=='zainabimad71@gmail.com'||this.auth.auth.currentUser.email=='mayadahnaji@gmail.com') {
 
-        MyApp.prototype.AuthState = true
+      if (apiAuth.UserName != '') {
+        this.FacebokUser = apiAuth.UserName
+        this.showFacebookUser = true
       } else {
-
-        MyApp.prototype.AuthState = false //////////////For Admin Panal
+        this.showFacebookUser = true
       }
+      //if (this.auth.auth.currentUser != null) {
+      if (this.apiAuth.AuthState == true) {
+          if (this.auth.auth.currentUser.email == 'h@h.com' || this.auth.auth.currentUser.email=='zainabimad71@gmail.com'||this.auth.auth.currentUser.email=='mayadahnaji@gmail.com'||this.auth.auth.currentUser.email=='hosainalandaleb@gmail.com') {
+  
+          MyApp.prototype.AuthState = true
+        } else {
 
-      this.FireBaseUser = this.auth.auth.currentUser.email
-      let NameOfcurentUser = this.FireBaseUser.split("@");
-      this.FireBaseUser = NameOfcurentUser[0]
-      this.showFirebaseUser = true
-    } else {
-      MyApp.prototype.AuthState = this.apiAuth.AuthState
-      this.showFirebaseUser = false;
-    }
+          MyApp.prototype.AuthState = false //////////////For Admin Panal
+        }
+
+        this.FireBaseUser = this.auth.auth.currentUser.email
+        let NameOfcurentUser = this.FireBaseUser.split("@");
+        this.FireBaseUser = NameOfcurentUser[0]
+        this.showFirebaseUser = true
+      } else {
+        MyApp.prototype.AuthState = this.apiAuth.AuthState
+        this.showFirebaseUser = false;
+      }
     } catch (error) {
       console.log("No Internet")
     }
@@ -79,33 +79,33 @@ export class HomePage {
   }
 
 
- async GetConfiremdStations() {
+  async GetConfiremdStations() {
 
-  try {
-    
-  let GetConfirmedStations = this.db.object('ConfirmedStations')
-     GetConfirmedStations.snapshotChanges().subscribe(data => {
-      if (data.payload.val() != null || data.payload.val() != undefined) {
-        this.ConfirmedFullStationsArray.push(data.payload.val())
-        this.ConfirmedSmallStationsArray = Object.entries(this.ConfirmedFullStationsArray[0])
- this.Network=false
-      } else {
-        console.log("No Data")
-      }
-    })
-  } catch (error) {
-    console.log(error)
-    
+    try {
+
+      let GetConfirmedStations = this.db.object('ConfirmedStations')
+      GetConfirmedStations.snapshotChanges().subscribe(data => {
+        if (data.payload.val() != null || data.payload.val() != undefined) {
+          this.ConfirmedFullStationsArray.push(data.payload.val())
+          this.ConfirmedSmallStationsArray = Object.entries(this.ConfirmedFullStationsArray[0])
+          this.Network = false
+        } else {
+          console.log("No Data")
+        }
+      })
+    } catch (error) {
+      console.log(error)
+
+    }
+
   }
 
-  }
-
-  Call(number:string){
-    this.callNumber.callNumber(number,true).then(res=>{
-         console.log("Call Done")
-    }).catch(err=>{
-     // alert("حصل خطأ اثناء الاتصال")
-     alert(number)
+  Call(number: string) {
+    this.callNumber.callNumber(number, true).then(res => {
+      console.log("Call Done")
+    }).catch(err => {
+      alert("حصل خطأ اثناء الاتصال")
+       
     })
   }
 

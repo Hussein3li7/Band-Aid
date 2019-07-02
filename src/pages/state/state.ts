@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { Component, } from '@angular/core';
+import { NavController, ModalController, NavParams, Modal } from 'ionic-angular';
 import { BrokenPage } from '../broken/broken';
 import { FaintingPage } from '../fainting/fainting';
 import { BurnsPage } from '../burns/burns'
@@ -34,7 +34,7 @@ export class StatePage {
   ConfrimedStateFullData = []
   ConfrimedStateSmallData = []
 
-  constructor(public navCtrl: NavController, public db: AngularFireDatabase, public auth: AngularFireAuth, private Modal: ModalController) {
+  constructor(public navCtrl: NavController, public db: AngularFireDatabase, public auth: AngularFireAuth, private Modal: ModalController, private parames: NavParams) {
 
 
     this.initializeItems();
@@ -42,7 +42,13 @@ export class StatePage {
 
     this.GetConfirmedData()
 
+    // if(parames.get('refresh')==true){
 
+
+    // }else{
+
+    //   this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    // }
 
 
   }
@@ -63,16 +69,15 @@ export class StatePage {
       'الاوجاع',
       'الولادة الطارئة',
       'الافاعي والعقارب'
+
     ];
 
+    this.items2 = [
+      '0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
+    ]
+
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StatePage');
-
-  }
-
-
+ 
   getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems();
@@ -92,62 +97,58 @@ export class StatePage {
   goToDatails(getitems) {
 
 
-    if (getitems == 'الكسر') {
+    if (getitems == '0') {
 
       this.navCtrl.push(BrokenPage)
 
     }
-    else if (getitems == 'ضربة شمس') {
+    else if (getitems == '1') {
 
       this.navCtrl.push(SunstrokePage)
     }
-    else if (getitems == 'الجروح والنزف') {
+    else if (getitems == '2') {
+
+      this.navCtrl.push(FaintingPage)
+    }
+    else if (getitems == '3') {
 
       this.navCtrl.push(WoundsPage)
     }
-    else if (getitems == 'الحروق') {
-
+    else if (getitems == '4') {
       this.navCtrl.push(BurnsPage)
     }
-    else if (getitems == 'الاغماء') {
-      this.navCtrl.push(FaintingPage)
-    }
-    else if (getitems == 'الاختناق') {
+    else if (getitems == '5') {
       this.navCtrl.push(ChokingPage)
     }
-    else if (getitems == 'اظطرابات الدورة الدموية') {
+    else if (getitems == '6') {
       this.navCtrl.push(BloodCirculationPage)
     }
-    else if (getitems == 'التسمم') {
+    else if (getitems == '7') {
       this.navCtrl.push(UnconsciousnessPage)
     }
 
-    else if (getitems == 'اصابات العضلات والمفاصل') {
+    else if (getitems == '8') {
       this.navCtrl.push(MusculoskeletalInjuriesPage)
     }
-    else if (getitems == 'تاثير درجات الحرارة القصوى') {
+    else if (getitems == '9') {
       this.navCtrl.push(MaxTemperaturesPage)
     }
 
-    else if (getitems == 'الاوجاع') {
+    else if (getitems == '10') {
       this.navCtrl.push(AchesPage)
     }
-    else if (getitems == 'التصرف في الحوادث الكبرى') {
-      this.navCtrl.push(MajorAccidentsPage)
-    }
 
-
-    else if (getitems == 'الولادة الطارئة') {
+    else if (getitems == '11') {
       this.navCtrl.push(EmergencyBirthPage)
     }
-    else if (getitems == 'الافاعي والعقارب') {
+    else if (getitems == '12') {
       this.navCtrl.push(PythonPage)
-    } 
+    }
 
   }
 
 
-  GetConfirmedData() {
+  async  GetConfirmedData() {
 
     try {
 
@@ -179,10 +180,27 @@ export class StatePage {
       key: key
     }
 
-    const myModal = this.Modal.create('ModalPage', { Data: myModalData })
+    const myModal: Modal = this.Modal.create('ModalPage', { Data: myModalData })
 
     myModal.present()
 
+    myModal.onDidDismiss((data) => {
+
+      try {
+        if (data['re'] == 'true') {
+          this.Update()
+        } else {
+          return
+        }
+      } catch (err) {
+        this.Update()
+      }
+
+    })
+  }
+
+  Update() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
 
   }
 

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController, AlertController, ModalController } from 'ionic-angular';
+import { Component, state } from '@angular/core';
+import {  IonicPage, NavParams, ViewController, AlertController, ModalController, NavController, Modal } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ApiServiseProvider } from '../../providers/api-servise/api-servise'
-
+import { StatePage } from '../state/state'
 @IonicPage()
 @Component({
   selector: 'page-modal',
@@ -20,14 +20,19 @@ export class ModalPage {
   }
   showEditeButton: boolean = false;
 
-  constructor(public navParams: NavParams, private ViewCtr: ViewController, public alertContrl: AlertController, private Modal: ModalController, public db: AngularFireDatabase, public auth: AngularFireAuth, public ApiAuth: ApiServiseProvider) {
- 
+  constructor(public navParams: NavParams, private ViewCtr: ViewController, public alertContrl: AlertController, private Modal: ModalController, public db: AngularFireDatabase, public auth: AngularFireAuth, public ApiAuth: ApiServiseProvider, private navCtrl: NavController ) {
+
     this.GetDataFromStatePage()
- 
+
   }
 
   CloseModal() {
-    this.ViewCtr.dismiss()
+
+    const Refresh = {
+      Re: 'true'
+    }
+
+    this.ViewCtr.dismiss(Refresh)
   }
   GetDataFromStatePage() {
     const ArrayGotData = this.navParams.get('Data')
@@ -38,21 +43,21 @@ export class ModalPage {
     this.StateDataObj.key = ArrayGotData['key']
 
     try {
-          
-    if (this.ApiAuth.AuthState == true) {
 
-      if (this.auth.auth.currentUser.email == this.StateDataObj.PulisherName) {
-        this.showEditeButton = true
+      if (this.ApiAuth.AuthState == true) {
+
+        if (this.auth.auth.currentUser.email == this.StateDataObj.PulisherName) {
+          this.showEditeButton = true
+        } else {
+          this.showEditeButton = false
+        }
       } else {
         this.showEditeButton = false
       }
-    } else {
-      this.showEditeButton = false
-    }
     } catch (error) {
       return error
     }
- 
+
   }
 
   openModal() {
@@ -65,11 +70,10 @@ export class ModalPage {
       key: this.StateDataObj.key
     }
 
-    const myModal = this.Modal.create('EditFormPage', { Data: myModalData })
+    const myModal: Modal = this.Modal.create('EditFormPage', { Data: myModalData })
 
     myModal.present()
-
-
+  
   }
 
 
@@ -93,7 +97,12 @@ export class ModalPage {
             let DataObj = this.db.list('ConfirmedState')
 
             DataObj.remove(this.StateDataObj.key).then(() => {
-              this.ViewCtr.dismiss()
+              data = {
+                re: 'true'
+              }
+              this.ViewCtr.dismiss(data)
+              // this.navCtrl.popAll()data
+
             })
               .catch(err => alert('خطا اثناء عملية الحدف'));
 
@@ -115,7 +124,7 @@ export class ModalPage {
     )
     Confirm.present()
   }
-
+  
 
 
 }
