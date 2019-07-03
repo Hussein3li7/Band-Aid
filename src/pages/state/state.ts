@@ -96,54 +96,104 @@ export class StatePage {
 
   goToDatails(getitems) {
 
-
-    if (getitems == '0') {
-
-      this.navCtrl.push(BrokenPage)
-
-    }
-    else if (getitems == '1') {
-
-      this.navCtrl.push(SunstrokePage)
-    }
-    else if (getitems == '2') {
-
-      this.navCtrl.push(FaintingPage)
-    }
-    else if (getitems == '3') {
-
-      this.navCtrl.push(WoundsPage)
-    }
-    else if (getitems == '4') {
+    switch(getitems){
+      case 0:
+        this.navCtrl.push(BrokenPage)
+        break;
+     
+      case 1: 
+        this.navCtrl.push(SunstrokePage)
+        break;
+    
+      case 2: 
+        this.navCtrl.push(FaintingPage)
+        break;
+    
+      case 3: 
+        this.navCtrl.push(WoundsPage)
+        break;
+      case 3: 
+        this.navCtrl.push(WoundsPage)
+        break;
+      case 4: 
       this.navCtrl.push(BurnsPage)
-    }
-    else if (getitems == '5') {
+        break;
+      case 5: 
       this.navCtrl.push(ChokingPage)
-    }
-    else if (getitems == '6') {
+        break;
+      case 6: 
       this.navCtrl.push(BloodCirculationPage)
-    }
-    else if (getitems == '7') {
+        break;
+      case 7: 
       this.navCtrl.push(UnconsciousnessPage)
-    }
-
-    else if (getitems == '8') {
+        break;
+      case 8: 
       this.navCtrl.push(MusculoskeletalInjuriesPage)
-    }
-    else if (getitems == '9') {
+        break;
+      case 9: 
       this.navCtrl.push(MaxTemperaturesPage)
-    }
-
-    else if (getitems == '10') {
+        break;
+      case 10: 
       this.navCtrl.push(AchesPage)
+        break;
+      case 11: 
+      this.navCtrl.push(EmergencyBirthPage)
+        break;
+      case 12: 
+      this.navCtrl.push(PythonPage)
+        break;
+ 
+     default:
+       alert(getitems)
     }
 
-    else if (getitems == '11') {
-      this.navCtrl.push(EmergencyBirthPage)
-    }
-    else if (getitems == '12') {
-      this.navCtrl.push(PythonPage)
-    }
+    // if (getitems == '0') {
+
+    //   this.navCtrl.push(BrokenPage)
+
+    // }
+    // else if (getitems == '1') {
+
+    //   this.navCtrl.push(SunstrokePage)
+    // }
+    // else if (getitems == '2') {
+
+    //   this.navCtrl.push(FaintingPage)
+    // }
+    // else if (getitems == '3') {
+
+    //   this.navCtrl.push(WoundsPage)
+    // }
+    // else if (getitems == '4') {
+    //   this.navCtrl.push(BurnsPage)
+    // }
+    // else if (getitems == '5') {
+    //   this.navCtrl.push(ChokingPage)
+    // }
+    // else if (getitems == '6') {
+    //   this.navCtrl.push(BloodCirculationPage)
+    // }
+    // else if (getitems == '7') {
+    //   this.navCtrl.push(UnconsciousnessPage)
+    // }
+
+    // else if (getitems == '8') {
+    //   this.navCtrl.push(MusculoskeletalInjuriesPage)
+    // }
+    // else if (getitems == '9') {
+    //   this.navCtrl.push(MaxTemperaturesPage)
+    // }
+
+    // else if (getitems == '10') {
+    //   this.navCtrl.push(AchesPage)
+    // }
+
+    // else if (getitems == '11') {
+    //   this.navCtrl.push(EmergencyBirthPage)
+    // }
+    // else if (getitems == '12') {
+    //   this.navCtrl.push(PythonPage)
+    // }
 
   }
 
