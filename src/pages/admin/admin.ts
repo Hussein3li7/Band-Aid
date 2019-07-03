@@ -213,7 +213,7 @@ export class AdminPage {
 
   CopyUrl() {
 
-    let URL = document.getElementById('URL') as HTMLInputElement
+    let URL = document.getElementById('Url') as HTMLInputElement
 
     this.clipboard.copy(URL.innerText).then(()=>{
       this.ShowCopedURL()

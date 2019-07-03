@@ -1,7 +1,6 @@
-import { Component, style } from '@angular/core';
+import { Component, style, trigger, transition, animate } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import{StatePage} from '../state/state'
- 
+  
 @IonicPage()
 @Component({
   selector: 'page-about',

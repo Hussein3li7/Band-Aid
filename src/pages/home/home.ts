@@ -90,7 +90,7 @@ export class HomePage {
           this.ConfirmedSmallStationsArray = Object.entries(this.ConfirmedFullStationsArray[0])
           this.Network = false
         } else {
-          console.log("No Data")
+          this.Network = false
         }
       })
     } catch (error) {

@@ -210,7 +210,7 @@ export class StatePage {
 
           this.Network = false
         } else {
-          console.log("No data")
+          this.Network = false
         }
       })
 
