@@ -93,5 +93,4 @@
         <variable name="APP_NAME" value="FirstAid" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.36.0" />
     </plugin>
-    <engine name="android" spec="~7.0.0" />
 </widget>
